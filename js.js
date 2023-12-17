@@ -135,7 +135,7 @@ function chekFileFletSupdes() {
     const numBranchRetailer = document.getElementById('branchRetailer').value;
 
     if (splitSupdes.length>1){
-        // alert("נראה שמדובר בתעודות מרובות,לכן הזן את מספר התעודה שברצונך לבדוק")
+        alert("נראה שמדובר בתעודות מרובות,לכן הזן את מספר התעודה שברצונך לבדוק")
         addElement("נראה שמדובר בתעודות מרובות,לכן הזן את מספר התעודה שברצונך לבדוק");
     }
 
