@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edi</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="js.js"></script>
+    <script type="text/javascript" src="Search.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body class="body" onkeydown="checkEnter(event)">
+
+
+<div class="AllData">
+    <h1>פרטי התעודה</h1>
+
+    <div class="selectType">
+        <label for="fileStructure" >מבנה המסר</label>
+        <select name="menuTypeStructure" id="menuTypeStructure">
+            <option value="fileStructure">מבנה המסר</option>
+            <option value="hashavshevt">חשבשבת</option>
+            <option value="fletFile">flet file</option>
+
+        </select>
+
+        <label for="fileType">סוג המסר</label>
+        <select name="menuTypefile" id="menuTypefile">
+            <option value="fileType">סוג המסר</option>
+            <option value="supdes">משלוח</option>
+            <option value="order">הזמנה</option>
+            <option value="mmdr">כניסה</option>
+            <option value="return">החזרה</option>
+        </select>
+    </div>
+
+    <div class="inputBox">
+
+
+        <input type="text" id="retailer" list="optionsList"  placeholder="(חובה) חפש\הזן מספר רשת"
+               onkeydown="checkEnter(event)"><br><br><br>
+
+<!--        <input type="text" id="retailer" placeholder="(חובה) edi הזן מספר רשת"-->
+<!--               onkeydown="checkEnter(event)"><br><br><br>-->
+        <input type="text" id="supplier" placeholder="(חובה) edi  הזן מספר ספק"
+               onkeydown="checkEnter(event)"><br><br><br>
+        <input type="text" id="message" placeholder="(אופציונלי) הזן מספר תעודה" onkeydown="checkEnter(event)"><br><br><br>
+        <input type="text" id="supplierSubnetNumber" placeholder="הזן מספר תת ספק(אופציונלי)"
+               onkeydown="checkEnter(event)"><br><br><br>
+        <input type="text" id="branchRetailer" placeholder="(אופציונלי) edi הזן מספר סניף"
+               onkeydown="checkEnter(event)"><br><br><br>
+    </div>
+
+
+    <!--    <button onclick="Search()" id="Search">בדוק</button>-->
+
+    <br><br>
+</div>
+<br>
+
+
+<div id="messageRuslt1">
+    <h1 class="aa">תוצאות הבדיקה</h1>
+    <p id="messageRuslt"></p>
+
+
+    </div>
+    <br><br>
+</div>
+<br>
+
+
+
+
+
+<div class="upFile">
+
+    <h1>קבצים</h1>
+
+
+    <div class="files">
+        <div id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+
+            <i class="material-icons upload-icon" style="color: #4CAF50;font-size: 50px;position: relative;top:10px">cloud_upload</i>
+            <p style="position: relative;top:-10px">גרור קובץ לכאן
+                <br>או</p>
+
+            <button id="upload-icon" onclick="triggerFileInput()">בחר קובץ
+
+
+            </button>
+
+
+            <div id="file-name" style=" display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0px;
+      font-size: 13px;
+      color: #afa0a0"></div>
+        </div>
+
+    </div>
+
+
+    <input type="file" id="file-input" onchange="handleFileInput(event)"/>
+
+
+</div>
+
+
+
+<!--<div id="messageRusltFromFile">-->
+<!--</div>-->
+<!--<div id="messageRusltFromFile1">-->
+<!--    <h >תוצאות פרטי התעודה</h>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<input type="text" id="searchInput" list="optionsList" oninput="updateOptions()">-->
+<div class="divOptionsList">
+<datalist id="optionsList">
+    <option value="7290027600007" >-שופרסל</option>
+    <option value="7290058140886">-יינות ביתן</option>
+    <option value="7290058140886">-סמארט סרוייס</option>
+    <option value="7290058140886">-אל דוד קמעונאות</option>
+    <option value="7290058140886">-ליאור עדיקה</option>
+    <option value="7290058140886">-סופר טל</option>
+    <option value="7290058140886">-סופר לב</option>
+    <option value="7290058140886">-שמואל שפע ברכה</option>
+    <option value="7290058140886">-מעדני מניה</option>
+    <option value="7290058140886">-ד.נ קמעונאות</option>
+    <option value="7290058140886">-טסה שוקולד</option>
+    <option value="7290058140886">-מעדני גורמה</option>
+    <option value="7290058140886">-בול מרקט</option>
+    <option value="7290058140886">-סאלח דבאח</option>
+    <option value="7290058140886">-פוד מאסטר</option>
+    <option value="7290058140886">-קשת גיבורים</option>
+    <option value="7290058140886">-האחים יעקובי</option>
+    <option value="7290785400000">-קשת טעמים</option>
+    <option value="7290058206902">-קולינאריק</option>
+    <option value="7290393000005">-טיב טעם</option>
+    <option value="7290058186181">-עדן טבע</option>
+    <option value="7290058140886">-חצי חינם</option>
+    <option value="7290058140886">-יוחננוף</option>
+    <option value="7290058140886">-רמי לוי</option>
+    <option value="7290058140886">-ב.ה לוי</option>
+    <option value="7290737000005">-מנטה</option>
+    <option value="7290058160372">-יילו</option>
+    <option value="7290661400001">-מחסני השוק</option>
+    <option value="7290058140886">-המרכז הקמעונאי למזון</option>
+    <option value="7290058214044">-סיטונאות רחמים</option>
+    <option value="7290058140886">-פרש מרקט</option>
+    <option value="7290058140886">-מרקט בעיר</option>
+    <option value="7290058140886">-מחסני להב  ספיר דן</option>
+    <option value="7290058140886">-מרכז המזון ירכא</option>
+    <option value="7290058140886">-סופר יודה</option>
+    <option value="7290058140886">-מיקה תפעול תחנות דלק</option>
+    <option value="7290058140886">-ספאר ישראל</option>
+    <option value="7290058140886">-מחסני מזון חינם פלוס</option>
+    <option value="7290492000005">-דור אלון/AM PM/אלונית</option>
+    <option value="7290058140886">-סופר ברקת </option>
+    <option value="7290058140886">-נתיב החסד </option>
+    <option value="7290058213818">-מלונות פתאל</option>
+    <option value="7290058140886">-טבע ספורט קסטל</option>
+
+
+    <option value="7290058216161">-אר.טו.אמ. קורפוראשיין</option>
+    <option value="7290058140886">-אהבת חסד</option>
+    <option value="7290058140886">-מרב מזון כל אושר עד</option>
+    <option value="7290058237807">-משקאות חינאוי</option>
+    <option value="7290058140886">-סופר קופיקס</option>
+    <option value="7290639000004">-סטופ מרקט</option>
+    <option value="7290058140886">ח.נ.ח אקספרס בע"מ (הרמיטאז')</option>
+    <option value="7290058140886">-בנא משקאות</option>
+    <option value="7290058140886">-זול ובגדול</option>
+    <option value="7290058140886">-שיווק רוסמן</option>
+    <option value="7290058140886">-הסל שלי</option>
+    <option value="7290058140886">-מזוז אליהו ובניו</option>
+    <option value="7290058140886">-פוליצר</option>
+    <option value="7290058140886">-חסד לאלפים</option>
+    <option value="7290058140886">-אניס בשביל הטבע</option>
+    <option value="7290058140886">-דיוטי פארם</option>
+    <option value="7290058140886">-צ'וסחא מרקט</option>
+    <option value="7290058140886">-שאולי פמילי מרקט</option>
+    <option value="7290058234172">-מעיין נציגויות</option>
+    <option value="7290058140886">-אייזיקס מעדני גורמה</option>
+    <option value="7290058140886">-סופר רפאל</option>
+    <option value="7290455000004">-ח.כהן סוכנות מזון</option>
+    <option value="7290058253678">-ח.כהן יבוא שיווק</option>
+    <option value="7290058224357">-פודנט</option>
+    <option value="7290058140886">-סופר אשכול</option>
+    <option value="7290058213559">-היפר ליפסקר</option>
+    <option value="7290058140886">-ח.י מעדני גורמה</option>
+    <option value="7290058140886">-סופר בונוס</option>
+
+
+
+
+</datalist>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function checkEnter(event) {
+        if (event.key === 'Enter') {
+            // chekFileFletSupdes();
+            // chekFileHashavshevtSupdes()
+            var selectedOption = document.getElementById("menuTypeStructure").value;
+            if (selectedOption === "fileStructure") {
+                alert("לא נבחר מבנה המסר לבדיקה");
+            } else if (selectedOption === "fletFile") {
+                chekFileFletSupdes();
+            }
+            else if (selectedOption === "hashavshevt") {
+                chekFileHashavshevtSupdes();
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
