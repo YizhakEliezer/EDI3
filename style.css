@@ -1,8 +1,8 @@
-.body{
+.body {
     font-family: Arial;
     background-color: #f0f0f3;
     /*//#e2ddff*/
-    background-image :url("https://yizhakeliezer.github.io/EDI3/storenext.png");
+    background-image: url(""https://yizhakeliezer.github.io/EDI3/storenext.png");
     background-size: 200px;
     background-repeat: no-repeat;
     background-position: revert;
@@ -10,26 +10,25 @@
 
 }
 
-.AllData{
+.AllData {
     background-color: white;
     position: absolute;
-    right:45px;
+    right: 45px;
     top: 20px;
     width: 450px;
     height: 350px;
     border: 1px solid #bdb8b8;
     border-radius: 4px;
-
+    display: none;
 
 }
 
 
-
-.inputBox input{
-    color:  #2d3cc7;
+.inputBox input {
+    color: #2d3cc7;
     font-weight: bold;
     height: 1%;
-    padding:15px;
+    padding: 15px;
     background-color: white;
     border: 1px solid black;
     border-radius: 3px;
@@ -41,14 +40,13 @@
 }
 
 
-
-.inputBox{
+.inputBox {
     position: absolute;
     top: 70px;
 }
 
 
-#menuTypeStructure{
+#menuTypeStructure {
     color: #2d3cc7;
     font-weight: bold;
     height: 8%;
@@ -64,9 +62,7 @@
 }
 
 
-#menuTypefile{
-    /*#79acf1*/
-    /*#664793*/
+#menuTypefile {
     color: #2d3cc7;
     font-weight: bold;
     height: 8%;
@@ -81,14 +77,11 @@
 }
 
 
-
-
-
 .AllData h1 {
     position: absolute;
     left: 71%;
     top: 1%;
-font-size: 20px;
+    font-size: 20px;
     color: #4d4a4a;
     border-bottom: 2px solid #4CAF50;
     display: inline;
@@ -97,35 +90,24 @@ font-size: 20px;
 }
 
 
+/*#Search{*/
+
+/*    border-color: #bdb8b8;*/
+/*    border: 2px solid #011926;*/
+/*    color: #011926;*/
+/*    background-color: #79acf1;*/
+/*    font-size: 15px;*/
+/*    width: 60%;*/
+/*    height: 10%;*/
+/*    position: absolute;*/
+/*    top: 185%;*/
+/*    left:20%;*/
+/*    display: none;*/
+
+/*}*/
 
 
-
-
-#Search{
-
-    border-color: #bdb8b8;
-    border: 2px solid #011926;
-    color: #011926;
-    background-color: #79acf1;
-    font-size: 15px;
-    width: 60%;
-    height: 10%;
-    position: absolute;
-    top: 185%;
-    left:20%;
-    display: none;
-
-}
-
-
-
-
-
-
-
-
-
-#messageRuslt1{
+#messageRuslt1 {
     background-color: white;
     position: absolute;
     right: 511px;
@@ -134,14 +116,13 @@ font-size: 20px;
     height: 350px;
     border: 1px solid #bdb8b8;
     border-radius: 4px;
-    color:  #4d4a4a;
+    color: #4d4a4a;
     overflow: auto;
+    display: none;
 }
 
 
-
-
-#messageRuslt1 h1{
+#messageRuslt1 h1 {
 
     position: relative;
     left: 67%;
@@ -154,8 +135,7 @@ font-size: 20px;
 }
 
 
-
-#messageRuslt{
+#messageRuslt {
     position: relative;
     /*right: 115px;*/
     top: 45px;
@@ -169,78 +149,74 @@ font-size: 20px;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-.upFile{
-    background-color: white;
-    border: 1px solid #bdb8b8;
-    border-radius: 4px;
+.titelUpFile {
     position: absolute;
-    right:45px;
-    top: 385px;
-    width: 450px;
-    height: 250px;
+    bottom:320px;
+    /*left: 190px;*/
+    /*transform: translate(-50%, -50%);*/
+    /*padding: 20px;*/
+
 
 }
 
 
+.upFile {
+    background-color: white;
+    border-radius: 4px;
+/*display: none;*/
+}
 
 
-.upFile h1 {
-    position: relative;
+#titelFile {
+    position: absolute;
     left: 85%;
-    top: 7%;
+    top: 1%;
     font-size: 20px;
     color: #4d4a4a;
     border-bottom: 2px solid #4CAF50;
     display: inline;
     padding-bottom: 3px;
-
+    display: none;
 }
-
-
 
 
 #drop-zone {
-    border: 2px dashed #c4bfbf;
-    border-radius: 70px;
+    border: 2px dashed #8430a2;
+    border-radius: 10px;
     padding: 3px;
     text-align: center;
     cursor: pointer;
-    width: 85%;
-    height: 70%;
+    /*width: 20%;*/
+    /*height: 33%;*/
     background-color: white;
-    color:  #4d4a4a;
+    color: #4d4a4a;
     position: absolute;
-    left: 6%;
-    top: 22%;
+    /*top: 47%;*/
+    left: 50%;
+    /*top: 340px;*/
+    top:60%;
+    width: 370px;
+    height: 280px;
+
+
+    /*width: 50%;*/
+    /*height:  50%;*/
+    transform: translate(-50%, -50%);
+    padding: 20px;
+
+
+
 }
 
 
-
 #drop-zone:hover {
-    border-color: black;
+    border-color: #317f81;
 }
 
 #file-input {
     display: none;
 }
 
-/*#upload-icon {*/
-/*    font-size: 15px;*/
-/*    cursor: pointer;*/
-/*    color: #333;*/
-/*}*/
 
 #file-name {
     margin-top: 50px;
@@ -250,19 +226,28 @@ font-size: 20px;
 
 #upload-icon {
     position: absolute;
-    right: 41%;
-    bottom: 27%;
-    width: 70px;
-    height: 30px;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 40px;
     background-color: #3f4fd3;
     color: white;
     border: 2px solid #ffffff;
-    border-radius: 6px;
+    border-radius: 15px;
 }
 
-.files{
-    top: 500px;
+
+.iconAndhandleDrop {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 20px;
 }
+
+
 
 
 
@@ -273,8 +258,7 @@ font-size: 20px;
 }
 
 
-
-#messageRusltFromFile{
+#messageRusltFromFile {
     background-color: white;
     position: absolute;
     right: 511px;
@@ -282,9 +266,6 @@ font-size: 20px;
     width: 230px;
     height: 250px;
     border: 1px solid #bdb8b8;
-    /*border-radius: 4px;*/
-    /*color:  #4d4a4a;*/
-    /*overflow: auto;*/
 }
 
 
@@ -299,18 +280,6 @@ font-size: 20px;
     padding-bottom: 3px;
     font-weight: bold;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .custom-dropdown {
@@ -344,3 +313,17 @@ font-size: 20px;
 .options-list li:hover {
     background-color: #020202;
 }
+
+
+.inputBox i{
+    display: none;
+}
+
+
+.moreFile{
+    display: none;
+}
+
+
+
+
