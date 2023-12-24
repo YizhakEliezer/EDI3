@@ -99,7 +99,7 @@
                         שברצונכם לבדוק
                     </p7>
                 </div>
-
+                <button id="upload-icon" onclick="triggerFileInput()"></button>
                 <div class="iconAndhandleDrop">
                     <i class="material-icons upload-icon" id="icons"
                        style="color: #4CAF50;font-size: 70px;position: relative;top:15px">cloud_upload</i>
@@ -107,11 +107,7 @@
                         <br>או</p>
                 </div>
 
-
-                <button id="upload-icon" onclick="triggerFileInput()">בחר קובץ
-
-
-                </button>
+                <button id="upload-iconDiv" onclick="triggerFileInput()">בחר קובץ</button>
 
 
                 <div id="file-name" style=" display: flex;
@@ -227,22 +223,23 @@
 
 
 <script>
-    function checkEnter(event) {
-        if (event.key === 'Enter') {
-            // chekFileFletSupdes();
-            // chekFileHashavshevtSupdes()
-            var selectedOption = document.getElementById("menuTypeStructure").value;
-            if (selectedOption === "fileStructure") {
-                alert("לא נבחר מבנה המסר לבדיקה");
-            } else if (selectedOption === "fletFile") {
-                chekFileFletSupdes();
-            } else if (selectedOption === "hashavshevt") {
-                chekFileHashavshevtSupdes();
+        function checkEnter(event) {
+            const AllData = document.querySelector('.AllData');
+            if (AllData.style.display==="block") {
+                if (event.key === 'Enter') {
+                    var selectedOption = document.getElementById("menuTypeStructure").value;
+                    if (selectedOption === "fileStructure") {
+                        alert("לא נבחר מבנה המסר לבדיקה");
+                    } else if (selectedOption === "fletFile") {
+                        chekFileFletSupdes();
+                    } else if (selectedOption === "hashavshevt") {
+                        chekFileHashavshevtSupdes();
+                    }
+
+                }
+
             }
-
         }
-    }
-
 
 </script>
 
