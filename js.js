@@ -7,7 +7,8 @@ let numsplitSupdes = 0;
 //array For multiple certificates
 let splitSupdes;
 
-// let inputValueChek;
+myArraymessageRusltFromFile = [];
+
 
 //ondrop file
 function handleDragOver(event) {
@@ -44,6 +45,18 @@ function triggerFileInput() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 //read file and save in variable fileContentSearch
 function checkForValue(file) {
     const reader = new FileReader();
@@ -64,6 +77,7 @@ function checkForValue(file) {
         const uploadicon = document.getElementById('upload-icon');
         const icons = document.getElementById('icons');
         const iconAndhandleDropP = document.getElementById('iconAndhandleDropP');
+        const uploadiconDiv  = document.getElementById('upload-iconDiv');
 
         if (fileContent != undefined) {
             AllData.style.display = 'block';
@@ -86,6 +100,12 @@ function checkForValue(file) {
             icons.style.fontSize = '50px';
             icons.style.top = '10px';
             iconAndhandleDropP.style.fontSize = '15px';
+            uploadicon.style.width = '100%';
+            uploadicon.style.height = '100%';
+            uploadicon.style.top = '50%';
+            uploadiconDiv.style.width = '17%';
+            uploadiconDiv.style.height = '16%';
+            uploadiconDiv.style.top = '70%';
         }
 
 
@@ -96,16 +116,7 @@ function checkForValue(file) {
                 //Add a note that these are multiple certificates
                 const moreFile = document.querySelector('.moreFile');
                 moreFile.style.display = 'block';
-                // const inputValue = prompt("נראה שמדובר בתעודות מרובות,הזן את מספר התעודה שברצונך לבדוק:");
                 alert("נראה שמדובר בתעודות מרובות,לכן חובה להזין את מספר התעודה שברצונך לבדוק")
-                // for (let k = 0; k < splitSupdes.length; k++) {
-                //
-                //     if (splitSupdes[k].includes(inputValue)) {
-                //         console.log(splitSupdes[k])
-                //         numsplitSupdes = k;
-                //     }
-                //     inputValueChek=inputValue;
-                // }
             } else {
                 //remove a note that these are multiple certificates
                 const moreFile = document.querySelector('.moreFile');
@@ -116,20 +127,25 @@ function checkForValue(file) {
         }
 
 
+
 //Check if the user has selected a screen other than
-        if (file > 1) {
-            //Check the selected file structure type and run the appropriate function
-            var selectedOption = document.getElementById("menuTypeStructure").value;
-            if (selectedOption === "fileStructure") {
-                alert("לא נבחר מבנה המסר לבדיקה");
-            } else if (selectedOption === "fletFile") {
-                chekFileFletSupdes();
-            } else if (selectedOption === "hashavshevt") {
-                chekFileHashavshevtSupdes();
+
+            if (file > 1) {
+                //Check the selected file structure type and run the appropriate function
+                var selectedOption = document.getElementById("menuTypeStructure").value;
+                if (selectedOption === "fileStructure") {
+                    alert("לא נבחר מבנה המסר לבדיקה");
+                } else if (selectedOption === "fletFile") {
+                    chekFileFletSupdes();
+                } else if (selectedOption === "hashavshevt") {
+                    chekFileHashavshevtSupdes();
+
+                }
 
             }
 
-        }
+
+
 
 
     };
@@ -179,6 +195,31 @@ function messageRusltFix() {
 //function to chekFile
 function chekFileFletSupdes() {
 
+    numsplitSupdes=0;
+
+    try {
+    const messageIconX = document.getElementById('messageIconX');
+    const messageIconV = document.getElementById('messageIconV');
+    const supplierIconX = document.getElementById('supplierIconX');
+    const supplierIconV = document.getElementById('supplierIconV');
+    const retailerIconX = document.getElementById('retailerIconX');
+    const retailerIconV = document.getElementById('retailerIconV');
+    const branchRetailerIconV = document.getElementById('branchRetailerIconV');
+    const branchRetailerIconX = document.getElementById('branchRetailerIconX');
+    const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+    const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+    messageIconX.style.display = 'none';
+    messageIconV.style.display = 'none';
+    supplierIconX.style.display = 'none';
+    supplierIconV.style.display = 'none';
+    retailerIconX.style.display = 'none';
+    retailerIconV.style.display = 'none';
+    branchRetailerIconV.style.display = 'none';
+    branchRetailerIconX.style.display = 'none';
+    supplierSubnetNumberIconX.style.display = 'none';
+    supplierSubnetNumberIconV.style.display = 'none';
+
+
 //Variables of the input from the user
     const numRetailer = document.getElementById('retailer').value.toLowerCase();
     const numSupplier = document.getElementById('supplier').value;
@@ -206,10 +247,23 @@ function chekFileFletSupdes() {
     const lines = splitSupdes[numsplitSupdes].split('\n');
     // const secondToLastLine = lines[lines.length - 2];
 
+        let allLinesEmpty = true;
+        let cuont=0;
+        for (let j = 0; j <lines.length ; j++) {
+            const currentLine = lines[j].trim();
+            if (currentLine === "" || currentLine === undefined) {
+                allLinesEmpty = false;
+                cuont++;
+            }
+        }
+        if (!allLinesEmpty) {
+            lines.length=lines.length-cuont+1;
+        }
 
     //Clear the result arrays before each test
     myArray = [];
     myArraymessageRusltFromFile = [];
+
 
 
     //A function to check whether the values are equal without empty or undefined values
@@ -227,12 +281,8 @@ function chekFileFletSupdes() {
     }
 
 
-    // function supplierSubnetNumber(supplierSubnetNumber, supplierNumber) {
-    //     if (supplierSubnetNumber === "") {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+
+
 
 
     //constant values line 1
@@ -292,6 +342,7 @@ function chekFileFletSupdes() {
                 r++
             }
             const barcodeEmpty = splitSupdes[numsplitSupdes].split('\n')[r].substring(8, 9);
+            // const barcodeEmpty = splitSupdes[numsplitSupdes].split('\n')[r].substring(8, 22);
             const barcodeWithspaces = splitSupdes[numsplitSupdes].split('\n')[r].substring(9, 22);
             const mbarcodeWithspacesValue = barcodeWithspaces;
             if (barcodeEmpty.trim() === "") {
@@ -322,254 +373,231 @@ function chekFileFletSupdes() {
 
 
     //chek barcode is validi
-    constantValuesBarcode()
-    valuesBarcode()
 
 
-    //valueFromFile line 1
-    const generalLineHeader = splitSupdes[numsplitSupdes].split('\n')[0].substring(0, 8);
-    const isValidNumRetailer = splitSupdes[numsplitSupdes].split('\n')[0].substring(8, 23);
-    const MMDE02L = splitSupdes[numsplitSupdes].split('\n')[0].substring(23, 33);
-    const MMDE02R = splitSupdes[numsplitSupdes].split('\n')[0].substring(23, 33);
-    const SUPDES = splitSupdes[numsplitSupdes].split('\n')[0].substring(33, 47);
-    const isValidNumSupplier = splitSupdes[numsplitSupdes].split('\n')[0].substring(49, 64);
+        constantValuesBarcode()
+        valuesBarcode()
 
 
-    //valueFromFile line 2
-    const firstLineDetailsFile = splitSupdes[numsplitSupdes].split('\n')[1].substring(0, 8);
-    const isValidNumMessage = splitSupdes[numsplitSupdes].split('\n')[1].substring(8, 23);
+        //valueFromFile line 1
+        const generalLineHeader = splitSupdes[numsplitSupdes].split('\n')[0].substring(0, 8);
+        const isValidNumRetailer = splitSupdes[numsplitSupdes].split('\n')[0].substring(8, 23);
+        const MMDE02L = splitSupdes[numsplitSupdes].split('\n')[0].substring(23, 33);
+        const MMDE02R = splitSupdes[numsplitSupdes].split('\n')[0].substring(23, 33);
+        const SUPDES = splitSupdes[numsplitSupdes].split('\n')[0].substring(33, 47);
+        const isValidNumSupplier = splitSupdes[numsplitSupdes].split('\n')[0].substring(49, 64);
 
 
-    //time value
-    const timeDocument = splitSupdes[numsplitSupdes].split('\n')[1].substring(23, 35).trim();
-    const timeDocumentLength = 12;
-    const booleneLength = timeDocument.length === timeDocumentLength;
-    const year = Number(timeDocument.substring(0, 4));
-    const month = Number(timeDocument.substring(4, 6));
-    const day = Number(timeDocument.substring(6, 8));
-    const hour = Number(timeDocument.substring(8, 10));
-    const minute = Number(timeDocument.substring(10, 12));
+        //valueFromFile line 2
+        const firstLineDetailsFile = splitSupdes[numsplitSupdes].split('\n')[1].substring(0, 8);
+        const isValidNumMessage = splitSupdes[numsplitSupdes].split('\n')[1].substring(8, 23);
 
 
-    //NumSupplierSubnetNumber+NumBranchRetailer
-    const isValidNumSupplierSubnetNumber = splitSupdes[numsplitSupdes].split('\n')[1].substring(104, 119);
-    const isValidNumBranchRetailer = splitSupdes[numsplitSupdes].split('\n')[1].substring(154, 169);
+        //time value
+        const timeDocument = splitSupdes[numsplitSupdes].split('\n')[1].substring(23, 35).trim();
+        const timeDocumentLength = 12;
+        const booleneLength = timeDocument.length === timeDocumentLength;
+        const year = Number(timeDocument.substring(0, 4));
+        const month = Number(timeDocument.substring(4, 6));
+        const day = Number(timeDocument.substring(6, 8));
+        const hour = Number(timeDocument.substring(8, 10));
+        const minute = Number(timeDocument.substring(10, 12));
 
 
-    //valueFromFile line 3
-    const firstLine3row = splitSupdes[numsplitSupdes].split('\n')[2].substring(0, 8);
+        //NumSupplierSubnetNumber+NumBranchRetailer
+        const isValidNumSupplierSubnetNumber = splitSupdes[numsplitSupdes].split('\n')[1].substring(104, 119);
+        const isValidNumBranchRetailer = splitSupdes[numsplitSupdes].split('\n')[1].substring(154, 169);
 
 
-    //valueFromFile One line before last
-    const lestline = splitSupdes[numsplitSupdes].split('\n')[lines.length - 3].substring(0, 8);
-    //valueFromFile last line
-    const lestline1 = splitSupdes[numsplitSupdes].split('\n')[lines.length - 2].substring(0, 8);
+        //valueFromFile line 3
+        const firstLine3row = splitSupdes[numsplitSupdes].split('\n')[2].substring(0, 8);
 
 
-    if (
+        //valueFromFile One line before last
+        const lestline = splitSupdes[numsplitSupdes].split('\n')[lines.length - 3].substring(0, 8);
+        //valueFromFile last line
+        const lestline1 = splitSupdes[numsplitSupdes].split('\n')[lines.length - 2].substring(0, 8);
+
+
+        if (
+            //line 1
+            compareStringsIgnoreCaseAndSpace(generalLineHeader, ENV00101) &&
+            compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer) &&
+            (compareStringsIgnoreCaseAndSpace(nameDocument, MMDE02L) ||
+                compareStringsIgnoreCaseAndSpace(nameDocument2, MMDE02R)) &&
+            compareStringsIgnoreCaseAndSpace(SUPDES, typeDocument) &&
+            compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier) &&
+            //line 2
+            compareStringsIgnoreCaseAndSpace(firstLineDetailsFile, HEAD0101) &&
+
+            (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) &&
+
+            booleneLength === true &&
+            year >= 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
+            minute > 0 && minute <= 59
+            &&
+
+            (numSupplierSubnetNumber.trim() === "" &&
+                compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier) ||
+                numSupplierSubnetNumber.trim() != "" &&
+                compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)
+            )
+
+            &&
+
+            (numBranchRetailer.trim() === "" ||
+                numBranchRetailer.trim() != "" &&
+                compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)
+            )
+
+            &&
+
+            //line 3
+            compareStringsIgnoreCaseAndSpace(firstLine3row, LINE0001) &&
+
+
+            //barcode
+            constantValuesBarcodeBoolean === true && valuesBarcodeBoolean === true && ItemDataBoolean === true &&
+            compareStringsIgnoreCaseAndSpace(lestline, HEAD9901) &&
+            compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)
+
+
+        ) {
+            addElement("תעודה תקינה");
+        }
+
+
         //line 1
-        compareStringsIgnoreCaseAndSpace(generalLineHeader, ENV00101) &&
-        compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer) &&
-        (compareStringsIgnoreCaseAndSpace(nameDocument, MMDE02L) ||
-            compareStringsIgnoreCaseAndSpace(nameDocument2, MMDE02R)) &&
-        compareStringsIgnoreCaseAndSpace(SUPDES, typeDocument) &&
-        compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier) &&
+        if (!compareStringsIgnoreCaseAndSpace(generalLineHeader, ENV00101)) {
+            addElement('ENV00101-ערך חסר');
+        }
+
+        if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
+            addElement('מספר רשת שגוי');
+            const retailerIconX = document.getElementById('retailerIconX');
+            retailerIconX.style.display = 'block';
+        }
+        else {
+            const retailerIconV = document.getElementById('retailerIconV');
+                retailerIconV.style.display = 'block';
+        }
+
+
+        if (!compareStringsIgnoreCaseAndSpace(MMDE02L, nameDocument) &&
+            !compareStringsIgnoreCaseAndSpace(MMDE02R, nameDocument2)) {
+            addElement("MMDE02L-ערך חסר ");
+        }
+        if (!compareStringsIgnoreCaseAndSpace(SUPDES, typeDocument)) {
+            addElement('SUPDES-ערך חסר');
+        }
+        if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
+            addElement('מספר ספק שגוי');
+            const supplierIconX = document.getElementById('supplierIconX');
+            supplierIconX.style.display = 'block';
+        }
+        else {
+            const supplierIconV = document.getElementById('supplierIconV');
+            supplierIconV.style.display = 'block';
+        }
+
+
         //line 2
-        compareStringsIgnoreCaseAndSpace(firstLineDetailsFile, HEAD0101) &&
+        if (!compareStringsIgnoreCaseAndSpace(firstLineDetailsFile, HEAD0101)) {
+            addElement('HEAD0101-ערך חסר');
+        }
 
-        (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) &&
 
-        booleneLength === true &&
-        year >= 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
-        minute > 0 && minute <= 59
-        &&
+        if (isValidNumMessage.trim() === "" || numMessage.trim() != "" &&
+            !isValidNumMessage.trim().includes(numMessage.trim())) {
+            addElement('מספר תעודה שגוי');
+            const messageIconX = document.getElementById('messageIconX');
+            messageIconX.style.display = 'block';
+        }
+        else {
+            const messageIconV = document.getElementById('messageIconV');
+            messageIconV.style.display = 'block';
+        }
 
-        (numSupplierSubnetNumber.trim() === "" &&
-            compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier) ||
-            numSupplierSubnetNumber.trim() != "" &&
-            compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)
-        )
+        if (numMessage.trim() === "") {
+            const messageIconX = document.getElementById('messageIconX');
+            messageIconX.style.display = 'none';
+            const messageIconV = document.getElementById('messageIconV');
+            messageIconV.style.display = 'none';
+        }
 
-        &&
 
-        (numBranchRetailer.trim() === "" ||
-            numBranchRetailer.trim() != "" &&
-            compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)
-        )
+        if (booleneLength === false || isNaN(booleneLength)) {
+            addElement('פורמט תאריך  שגוי');
+        }
 
-        &&
+        if (year < 2023 || isNaN(year)) {
+            addElement('פורמט תאריך שנה שגוי');
+        }
+        if (month < 1 || month > 12 || isNaN(month)) {
+            addElement('פורמט תאריך חודש שגוי');
+        }
+        if (day < 1 || day > 31 || isNaN(day)) {
+            addElement('פורמט תאריך יום שגוי');
+        }
+        if (hour < 0 || hour > 24 || isNaN(hour)) {
+            addElement('פורמט תאריך שעה שגוי');
+        }
+        if (minute < 0 || minute > 59 || isNaN(minute)) {
+            addElement('פורמט תאריך דקה שגוי');
+        }
+
+
+        if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
+            addElement('מספר ספק משני/תת ספק שגוי או חסר');
+        }
+
+        if (numSupplierSubnetNumber.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
+            addElement('מספר  תת ספק  שגוי');
+            const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+            supplierSubnetNumberIconX.style.display = 'block';
+        }
+        else {
+            const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+            supplierSubnetNumberIconV.style.display = 'block';
+        }
+        if (numSupplierSubnetNumber.trim() === "") {
+            const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+            supplierSubnetNumberIconX.style.display = 'none';
+            const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+            supplierSubnetNumberIconV.style.display = 'none';
+        }
+
+        if (numBranchRetailer.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)) {
+            addElement('מספר  סניף  שגוי');
+            const branchRetailerIconX = document.getElementById('branchRetailerIconX');
+            branchRetailerIconX.style.display = 'block';
+        }
+        else {
+            const branchRetailerIconV = document.getElementById('branchRetailerIconV');
+            branchRetailerIconV.style.display = 'block';
+        }
+        if (numBranchRetailer.trim() === "") {
+            const branchRetailerIconX = document.getElementById('branchRetailerIconX');
+            branchRetailerIconX.style.display = 'none';
+            const branchRetailerIconV = document.getElementById('branchRetailerIconV');
+            branchRetailerIconV.style.display = 'none';
+        }
+
 
         //line 3
-        compareStringsIgnoreCaseAndSpace(firstLine3row, LINE0001) &&
+        if (!compareStringsIgnoreCaseAndSpace(firstLine3row, LINE0001)) {
+            addElement('LINE0001-ערך חסר');
+        }
 
+        if (!compareStringsIgnoreCaseAndSpace(lestline, HEAD9901)) {
+            addElement('HEAD9901-ערך חסר');
+        }
 
-        //barcode
-        constantValuesBarcodeBoolean === true && valuesBarcodeBoolean === true && ItemDataBoolean === true &&
-        compareStringsIgnoreCaseAndSpace(lestline, HEAD9901) &&
-        compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)
+        if (!compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)) {
+            addElement('ENV00201-ערך חסר');
+        }
 
-
-    ) {
-        addElement("תעודה תקינה");
-    }
-
-
-    //line 1
-    if (!compareStringsIgnoreCaseAndSpace(generalLineHeader, ENV00101)) {
-        addElement('ENV00101-ערך חסר');
-    }
-
-    if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
-        addElement('מספר רשת שגוי');
-        const retailerIconV = document.getElementById('retailerIconV');
-        retailerIconV.style.display = 'none';
-        const retailerIconX = document.getElementById('retailerIconX');
-        retailerIconX.style.display = 'block';
-    }
-    if (compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
-        const retailerIconX = document.getElementById('retailerIconX');
-        retailerIconX.style.display = 'none';
-        const retailerIconV = document.getElementById('retailerIconV');
-        retailerIconV.style.display = 'block';
-    }
-
-
-    if (!compareStringsIgnoreCaseAndSpace(MMDE02L, nameDocument) &&
-        !compareStringsIgnoreCaseAndSpace(MMDE02R, nameDocument2)) {
-        addElement("MMDE02L-ערך חסר ");
-    }
-    if (!compareStringsIgnoreCaseAndSpace(SUPDES, typeDocument)) {
-        addElement('SUPDES-ערך חסר');
-    }
-    if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
-        addElement('מספר ספק שגוי');
-        const supplierIconV = document.getElementById('supplierIconV');
-        supplierIconV.style.display = 'none';
-        const supplierIconX = document.getElementById('supplierIconX');
-        supplierIconX.style.display = 'block';
-    }
-    if (compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
-        const supplierIconX = document.getElementById('supplierIconX');
-        supplierIconX.style.display = 'none';
-        const supplierIconV = document.getElementById('supplierIconV');
-        supplierIconV.style.display = 'block';
-    }
-
-
-    //line 2
-    if (!compareStringsIgnoreCaseAndSpace(firstLineDetailsFile, HEAD0101)) {
-        addElement('HEAD0101-ערך חסר');
-    }
-
-
-    if (isValidNumMessage.trim() === "" || numMessage.trim() != "" &&
-        !isValidNumMessage.trim().includes(numMessage.trim())) {
-        addElement('מספר תעודה שגוי');
-        const messageIconV = document.getElementById('messageIconV');
-        messageIconV.style.display = 'none';
-        const messageIconX = document.getElementById('messageIconX');
-        messageIconX.style.display = 'block';
-    }
-
-    if (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) {
-        const messageIconX = document.getElementById('messageIconX');
-        messageIconX.style.display = 'none';
-        const messageIconV = document.getElementById('messageIconV');
-        messageIconV.style.display = 'block';
-    }
-    if (numMessage.trim() === "") {
-        const messageIconX = document.getElementById('messageIconX');
-        messageIconX.style.display = 'none';
-        const messageIconV = document.getElementById('messageIconV');
-        messageIconV.style.display = 'none';
-    }
-
-
-    if (booleneLength === false || isNaN(booleneLength)) {
-        addElement('פורמט תאריך  שגוי');
-    }
-
-    if (year < 2023 || isNaN(year)) {
-        addElement('פורמט תאריך שנה שגוי');
-    }
-    if (month < 1 || month > 12 || isNaN(month)) {
-        addElement('פורמט תאריך חודש שגוי');
-    }
-    if (day < 1 || day > 31 || isNaN(day)) {
-        addElement('פורמט תאריך יום שגוי');
-    }
-    if (hour < 0 || hour > 24 || isNaN(hour)) {
-        addElement('פורמט תאריך שעה שגוי');
-    }
-    if (minute < 0 || minute > 59 || isNaN(minute)) {
-        addElement('פורמט תאריך דקה שגוי');
-    }
-
-
-    if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
-        addElement('מספר ספק משני/תת ספק שגוי או חסר');
-    }
-
-    if (numSupplierSubnetNumber.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
-        addElement('מספר  תת ספק  שגוי');
-        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
-        supplierSubnetNumberIconV.style.display = 'none';
-        const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
-        supplierSubnetNumberIconX.style.display = 'block';
-    }
-    if (numSupplierSubnetNumber.trim() === "" &&
-        compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier) ||
-        numSupplierSubnetNumber.trim() != "" &&
-        compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
-        const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
-        supplierSubnetNumberIconX.style.display = 'none';
-        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
-        supplierSubnetNumberIconV.style.display = 'block';
-    }
-
-    if (numSupplierSubnetNumber.trim() === "") {
-        const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
-        supplierSubnetNumberIconX.style.display = 'none';
-        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
-        supplierSubnetNumberIconV.style.display = 'none';
-    }
-
-    if (numBranchRetailer.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)) {
-        addElement('מספר  סניף  שגוי');
-        const branchRetailerIconV = document.getElementById('branchRetailerIconV');
-        branchRetailerIconV.style.display = 'none';
-        const branchRetailerIconX = document.getElementById('branchRetailerIconX');
-        branchRetailerIconX.style.display = 'block';
-    }
-    if (numBranchRetailer.trim() === "" ||
-        numBranchRetailer.trim() != "" &&
-        compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)) {
-        const branchRetailerIconX = document.getElementById('branchRetailerIconX');
-        branchRetailerIconX.style.display = 'none';
-        const branchRetailerIconV = document.getElementById('branchRetailerIconV');
-        branchRetailerIconV.style.display = 'block';
-    }
-    if (numBranchRetailer.trim() === "") {
-        const branchRetailerIconX = document.getElementById('branchRetailerIconX');
-        branchRetailerIconX.style.display = 'none';
-        const branchRetailerIconV = document.getElementById('branchRetailerIconV');
-        branchRetailerIconV.style.display = 'none';
-    }
-
-
-    //line 3
-    if (!compareStringsIgnoreCaseAndSpace(firstLine3row, LINE0001)) {
-        addElement('LINE0001-ערך חסר');
-    }
-
-    if (!compareStringsIgnoreCaseAndSpace(lestline, HEAD9901)) {
-        addElement('HEAD9901-ערך חסר');
-    }
-
-    if (!compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)) {
-        addElement('ENV00201-ערך חסר');
-    }
-
+    }catch (v){}
 
     // function supdes() {
     //     console.log("Supdes function");
@@ -626,299 +654,372 @@ function chekFileFletSupdes() {
 
 
 function chekFileHashavshevtSupdes() {
-    myArray = [];
+    try {
+        const messageIconX = document.getElementById('messageIconX');
+        const messageIconV = document.getElementById('messageIconV');
+        const supplierIconX = document.getElementById('supplierIconX');
+        const supplierIconV = document.getElementById('supplierIconV');
+        const retailerIconX = document.getElementById('retailerIconX');
+        const retailerIconV = document.getElementById('retailerIconV');
+        const branchRetailerIconV = document.getElementById('branchRetailerIconV');
+        const branchRetailerIconX = document.getElementById('branchRetailerIconX');
+        const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+        messageIconX.style.display = 'none';
+        messageIconV.style.display = 'none';
+        supplierIconX.style.display = 'none';
+        supplierIconV.style.display = 'none';
+        retailerIconX.style.display = 'none';
+        retailerIconV.style.display = 'none';
+        branchRetailerIconV.style.display = 'none';
+        branchRetailerIconX.style.display = 'none';
+        supplierSubnetNumberIconX.style.display = 'none';
+        supplierSubnetNumberIconV.style.display = 'none';
+
+
+
+
+
+        myArray = [];
     myArraymessageRusltFromFile = [];
 
-    function compareStringsIgnoreCaseAndSpace(valueFromFile, constantValue) {
-        // Check if value is defined and not empty
-        if (valueFromFile === undefined || valueFromFile.trim() === "") {
-            return false;
-        }
-        // Remove spaces from both the value and target strings
-        const formattedValue = valueFromFile.trim();
-        const formattedTarget = constantValue.trim();
 
-        // Check if the formatted value is exactly equal to the formatted target
-        return formattedTarget === formattedValue;
-    }
-
-
-    const numRetailer = document.getElementById('retailer').value.toLowerCase();
-    const numSupplier = document.getElementById('supplier').value;
-    const numMessage = document.getElementById('message').value;
-    const numSupplierSubnetNumber = document.getElementById('supplierSubnetNumber').value;
-    const numBranchRetailer = document.getElementById('branchRetailer').value;
-
-    const lines = fileContentSearch.split('\n');
-
-    let currentValidnumMessage = '';
-    let currentVariable = '';
-    let variables = [];
-
-    for (let l = 0; l < lines.length; l++) {
-        const isValidnumMessage = lines[l].substring(151, 158).trim();
-
-        if (isValidnumMessage === "") {
-            // Value is empty, add to the current variable
-            currentVariable += '\n' + lines[l];
-        } else if (isValidnumMessage !== currentValidnumMessage || currentValidnumMessage === "") {
-            // Value changed or previous value was empty, create a new variable
-            if (currentVariable !== '' && currentValidnumMessage !== "") {
-                variables.push(currentVariable);
+        function compareStringsIgnoreCaseAndSpace(valueFromFile, constantValue) {
+            // Check if value is defined and not empty
+            if (valueFromFile === undefined || valueFromFile.trim() === "") {
+                return false;
             }
+            // Remove spaces from both the value and target strings
+            const formattedValue = valueFromFile.trim();
+            const formattedTarget = constantValue.trim();
 
-            // Update current values
-            currentValidnumMessage = isValidnumMessage;
-            currentVariable = lines[l];
-        } else {
-            // Value is the same, add to the current variable
-            currentVariable += '\n' + lines[l];
+            // Check if the formatted value is exactly equal to the formatted target
+            return formattedTarget === formattedValue;
         }
-    }
+
+
+        const numRetailer = document.getElementById('retailer').value.toLowerCase();
+        const numSupplier = document.getElementById('supplier').value;
+        const numMessage = document.getElementById('message').value;
+        const numSupplierSubnetNumber = document.getElementById('supplierSubnetNumber').value;
+        const numBranchRetailer = document.getElementById('branchRetailer').value;
+
+        const lines = fileContentSearch.split('\n');
+
+        let currentValidnumMessage = '';
+        let currentVariable = '';
+        let variables = [];
+        for (let l = 0; l < lines.length; l++) {
+            const isValidnumMessage = lines[l].substring(151, 158).trim();
+
+            if (isValidnumMessage === "") {
+                // Value is empty, add to the current variable
+                currentVariable += '\n' + lines[l];
+            } else if (isValidnumMessage !== currentValidnumMessage || currentValidnumMessage === "") {
+                // Value changed or previous value was empty, create a new variable
+                if (currentVariable !== '' && currentValidnumMessage !== "") {
+                    variables.push(currentVariable);
+                }
+
+                // Update current values
+                currentValidnumMessage = isValidnumMessage;
+                currentVariable = lines[l];
+            } else {
+                // Value is the same, add to the current variable
+                currentVariable += '\n' + lines[l];
+            }
+        }
 
 // Add the last variable (if any) to the list
-    if (currentVariable !== '') {
-        variables.push(currentVariable);
-    }
-
-    if (variables.length > 1) {
-        const numMessage = document.getElementById('message').value;
-        const moreFile = document.querySelector('.moreFile');
-        moreFile.style.display = 'block';
-        alert("תעודות מרובות")
-        for (let k = 0; k < variables.length ; k++) {
-            if (variables[k].includes(numMessage)) {
-                numsplitSupdes = k;
-            }
+        if (currentVariable !== '') {
+            variables.push(currentVariable);
         }
-    } else {
 
-        const moreFile = document.querySelector('.moreFile');
-        moreFile.style.display = 'none';
-    }
-
-
-
-
-
-
-
-
-
-    // const lines =  splitSupdes[numsplitSupdes].split('\n');
-    // const secondToLastLine = lines[lines.length - 2];
-
-
-    try {
-
-
-        let numSupplierBoolean = true;
-        let isValidNumRetailerBoolean = true;
-        let isValidNumSupplierSubnetNumberBoolean = true;
-        let numSupplierSubnetNumberBoolean = true;
-        let numpPackagingBoolean = true;
-        let barcodeBoolean = true;
-        let matchNumBranchBoolean = true;
-        let numBranch1Boolean = true;
-        let numBranch2Boolean = true;
-        let pormatTime1Boolean = true;
-        let pormatTime2Boolean = true;
-        let dayDataTimeBoolean = true;
-        let monthDataTimeBoolean = true;
-        let yearDataTimeBoolean = true;
-
-        let dayDataTime2Boolean = true;
-        let monthDataTime2Boolean = true;
-        let yearDataTime2Boolean = true;
-        let numMessageBoolean = true;
-
-        const linesVariables = variables[numsplitSupdes].split('\n');
-        for (let i = 0; i < linesVariables.length ; i++) {
-            myArraymessageRusltFromFile = [];
-            console.log(variables[numsplitSupdes])
-            console.log(linesVariables[0])
-            console.log(linesVariables[1])
-
-            const isValidNumSupplier = variables[numsplitSupdes].split('\n')[i].substring(10, 23);
-            const isValidNumSupplierSubnetNumber = variables[numsplitSupdes].split('\n')[i].substring(24, 37);
-            const isValidNumRetailer = variables[numsplitSupdes].split('\n')[i].substring(38, 51);
-            const numpPackaging = variables[numsplitSupdes].split('\n')[i].substring(66, 82);
-            const barcode = variables[numsplitSupdes].split('\n')[i].substring(87, 102);
-            const numBranch1 = variables[numsplitSupdes].split('\n')[i].substring(103, 133);
-            const numBranch2 = variables[numsplitSupdes].split('\n')[i].substring(134, 142);
-            const dataTime = variables[numsplitSupdes].split('\n')[i].substring(143, 151);
-            const dataTime2 = variables[numsplitSupdes].split('\n')[i].substring(159, 167);
-
-            const dayDataTime = Number(dataTime.substring(0, 2));
-            const monthDataTime = Number(dataTime.substring(3, 5));
-            const yearDataTime = Number(dataTime.substring(6, 8));
-
-            const dayDataTime2 = Number(dataTime2.substring(0, 2));
-            const monthDataTime2 = Number(dataTime2.substring(3, 5));
-            const yearDataTime2 = Number(dataTime2.substring(6, 8));
-
-
-            const isValidnumMessage = variables[numsplitSupdes].split('\n')[i].substring(151, 158);
-
-
-
-
-
-            if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
-                numSupplierBoolean = false;
-                addElement("מספר ספק שגוי שורה " + (i + 1));
-
-            }
-
-            if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
-                isValidNumRetailerBoolean = false;
-                addElement("מספר רשת שגוי שורה " + (i + 1));
-            }
-
-
-            // if (numSupplierSubnetNumber != "") {
-            //     if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
-            //         isValidNumSupplierSubnetNumberBoolean = false;
-            //         addElement("מספר ספק משני שגוי שורה " + (i + 1));
-            //     }
-            // }
-            if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)){
-                isValidNumSupplierSubnetNumberBoolean = false;
-                addElement("מספר ספק משני שגוי שורה " + (i + 1));
-            }
-
-
-            // if (numSupplierSubnetNumber != "") {
-            //     if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
-            //         numSupplierSubnetNumberBoolean = false;
-            //         addElement("מספר תת ספק  שגוי שורה " + (i + 1));
-            //     }
-            // }
-
-            if (numSupplierSubnetNumber.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)){
-                numSupplierSubnetNumberBoolean = false;
-                addElement("מספר תת ספק  שגוי שורה " + (i + 1));
-            }
-
-            if (numpPackaging.trim() === "") {
-                numpPackagingBoolean = false;
-                addElement("מספר אריזות חסר שורה " + (i + 1));
-            }
-
-            if (barcode.trim() === "") {
-                matchNumBranchBoolean = false;
-                addElement("ברקוד חסר שורה " + (i + 1));
-            }
-
-
-            if (numBranch1.trim() != numBranch2.trim()) {
-                numSupplierSubnetNumberBoolean = false;
-                addElement("חוסר התאמה במספר מפתח בשורה " + (i + 1));
-            }
-
-
-            if (numBranch1.trim() === "") {
-                numBranch1Boolean = false;
-                addElement("מספר מפתח חסר שורה " + (i + 1));
-            }
-
-            if (numBranch2.trim() === "") {
-                numBranch2Boolean = false;
-                addElement("מספר מפתח חסר שורה " + (i + 1));
-            }
-
-
-            if (dataTime.trim().length != 8 || String(dataTime.substring(2, 3)) != "/" || String(dataTime.substring(5, 6)) != "/") {
-                pormatTime1Boolean = false;
-                addElement("פורמט תאריך משלוח שגוי " + (i + 1));
-            }
-
-
-            if (dataTime2.trim().length != 8 || String(dataTime2.substring(2, 3)) != "/" || String(dataTime2.substring(5, 6)) != "/") {
-                pormatTime2Boolean = false;
-                addElement("פורמט תאריך תוקף שגוי " + (i + 1));
-            }
-
-
-            if (dayDataTime < 0 || dayDataTime > 31) {
-                dayDataTimeBoolean = false;
-                addElement("פורמט תאריך משלוח שדה -יום, שגוי. שורה " + (i + 1));
-            }
-
-            if (monthDataTime < 1 || monthDataTime > 12) {
-                monthDataTimeBoolean = false;
-                addElement("פורמט תאריך משלוח שדה -חודש, שגוי. שורה " + (i + 1));
-            }
-            if (yearDataTime < 23) {
-                yearDataTimeBoolean = false;
-                addElement("פורמט תאריך משלוח שדה -שנה, שגוי. שורה " + (i + 1));
-            }
-
-
-            if (dayDataTime2 < 0 || dayDataTime2 > 31) {
-                dayDataTime2Boolean = false;
-                addElement("פורמט תאריך תוקף שדה -יום, שגוי. שורה " + (i + 1));
-            }
-
-            if (monthDataTime2 < 1 || monthDataTime2 > 12) {
-                monthDataTime2Boolean = false;
-                addElement("פורמט תאריך תוקף שדה -חודש, שגוי. שורה " + (i + 1));
-            }
-            if (yearDataTime2 < 23) {
-                yearDataTime2Boolean = false;
-                addElement("פורמט תאריך תוקף שדה -שנה, שגוי. שורה " + (i + 1));
-            }
-
-
-            // if (!compareStringsIgnoreCaseAndSpace(isValidnumMessage, numMessage)) {
-            //     numMessageBoolean = false;
-            //     addElement("מספר תעודה שגוי שורה "+ (i + 1));
-            //
-            // }
-
-            if (numMessage.trim() != "") {
-                if (!compareStringsIgnoreCaseAndSpace(isValidnumMessage, numMessage)) {
-                    numMessageBoolean = false;
-                    addElement("מספר תעודה שגוי שורה " + (i + 1));
+        if (variables.length > 1) {
+            const numMessage = document.getElementById('message').value;
+            const moreFile = document.querySelector('.moreFile');
+            moreFile.style.display = 'block';
+            // alert("תעודות מרובות")
+            for (let k = 0; k < variables.length; k++) {
+                if (variables[k].includes(numMessage)) {
+                    numsplitSupdes = k;
                 }
             }
-            // if (isValidNumMessage.trim() === "" || numMessage.trim() != "" &&
-            //     !isValidNumMessage.trim().includes(numMessage.trim())){
-            //     numMessageBoolean = false;
-            //     addElement("מספר תעודה שגוי שורה " + (i + 1));
-            // }
+        } else {
 
-
+            const moreFile = document.querySelector('.moreFile');
+            moreFile.style.display = 'none';
         }
+
+
+        // const lines =  splitSupdes[numsplitSupdes].split('\n');
+        // const secondToLastLine = lines[lines.length - 2];
+
+
+
+            let numSupplierBoolean = true;
+            let isValidNumRetailerBoolean = true;
+            let isValidNumSupplierSubnetNumberBoolean = true;
+            let numSupplierSubnetNumberBoolean = true;
+            let numpPackagingBoolean = true;
+            let barcodeBoolean = true;
+            let matchNumBranchBoolean = true;
+            let numBranch1Boolean = true;
+            let numBranch2Boolean = true;
+            let pormatTime1Boolean = true;
+            let pormatTime2Boolean = true;
+            let dayDataTimeBoolean = true;
+            let monthDataTimeBoolean = true;
+            let yearDataTimeBoolean = true;
+
+            let dayDataTime2Boolean = true;
+            let monthDataTime2Boolean = true;
+            let yearDataTime2Boolean = true;
+            let numMessageBoolean = true;
+
+            const linesVariables = variables[numsplitSupdes].split('\n');
+
+
+        for (let i = 0; i < linesVariables.length; i++) {
+
+            let allLinesEmpty = true;
+            for (let j = i; j <linesVariables.length ; j++) {
+                const currentLine = linesVariables[j].trim();
+                if (currentLine !== "" && currentLine !== undefined) {
+                    allLinesEmpty = false;
+                    break;
+                }
+            }
+            if (allLinesEmpty) {
+                continue;
+            }
+
+                myArraymessageRusltFromFile = [];
+
+
+                const isValidNumSupplier = variables[numsplitSupdes].split('\n')[i].substring(10, 23);
+                const isValidNumSupplierSubnetNumber = variables[numsplitSupdes].split('\n')[i].substring(24, 37);
+                const isValidNumRetailer = variables[numsplitSupdes].split('\n')[i].substring(38, 51);
+                const numpPackaging = variables[numsplitSupdes].split('\n')[i].substring(66, 82);
+                const barcode = variables[numsplitSupdes].split('\n')[i].substring(87, 102);
+                const numBranch1 = variables[numsplitSupdes].split('\n')[i].substring(103, 133);
+                const numBranch2 = variables[numsplitSupdes].split('\n')[i].substring(134, 142);
+                const dataTime = variables[numsplitSupdes].split('\n')[i].substring(143, 151);
+                const dataTime2 = variables[numsplitSupdes].split('\n')[i].substring(159, 167);
+
+                const dayDataTime = Number(dataTime.substring(0, 2));
+                const monthDataTime = Number(dataTime.substring(3, 5));
+                const yearDataTime = Number(dataTime.substring(6, 8));
+
+                const dayDataTime2 = Number(dataTime2.substring(0, 2));
+                const monthDataTime2 = Number(dataTime2.substring(3, 5));
+                const yearDataTime2 = Number(dataTime2.substring(6, 8));
+
+
+                const isValidnumMessage = variables[numsplitSupdes].split('\n')[i].substring(151, 158);
+
+
+                if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
+                    numSupplierBoolean = false;
+                    addElement("מספר ספק שגוי שורה " + (i + 1));
+                    const supplierIconX = document.getElementById('supplierIconX');
+                    supplierIconX.style.display = 'block';
+                }
+
+
+                if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
+                    isValidNumRetailerBoolean = false;
+                    addElement("מספר רשת שגוי שורה " + (i + 1));
+                    const retailerIconX = document.getElementById('retailerIconX');
+                    retailerIconX.style.display = 'block';
+                }
+
+
+
+                // if (numSupplierSubnetNumber != "") {
+                //     if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
+                //         isValidNumSupplierSubnetNumberBoolean = false;
+                //         addElement("מספר ספק משני שגוי שורה " + (i + 1));
+                //     }
+                // }
+                if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
+                    isValidNumSupplierSubnetNumberBoolean = false;
+                    addElement("מספר ספק משני שגוי שורה " + (i + 1));
+                }
+
+
+                // if (numSupplierSubnetNumber != "") {
+                //     if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
+                //         numSupplierSubnetNumberBoolean = false;
+                //         addElement("מספר תת ספק  שגוי שורה " + (i + 1));
+                //     }
+                // }
+
+                if (numSupplierSubnetNumber.trim() != "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplierSubnetNumber)) {
+                    numSupplierSubnetNumberBoolean = false;
+                    addElement("מספר תת ספק  שגוי שורה " + (i + 1));
+                    const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+                    supplierSubnetNumberIconX.style.display = 'block';
+                }
+
+                if (numpPackaging.trim() === "") {
+                    numpPackagingBoolean = false;
+                    addElement("מספר אריזות חסר שורה " + (i + 1));
+                }
+
+                if (barcode.trim() === "") {
+                    matchNumBranchBoolean = false;
+                    addElement("ברקוד חסר שורה " + (i + 1));
+                }
+
+
+                if (numBranch1.trim() != numBranch2.trim()) {
+                    numSupplierSubnetNumberBoolean = false;
+                    addElement("חוסר התאמה במספר מפתח בשורה " + (i + 1));
+                }
+
+
+                if (numBranch1.trim() === "") {
+                    numBranch1Boolean = false;
+                    addElement("מספר מפתח חסר שורה " + (i + 1));
+                }
+
+                if (numBranch2.trim() === "") {
+                    numBranch2Boolean = false;
+                    addElement("מספר מפתח חסר שורה " + (i + 1));
+                }
+
+
+                if (dataTime.trim().length != 8 || String(dataTime.substring(2, 3)) != "/" || String(dataTime.substring(5, 6)) != "/") {
+                    pormatTime1Boolean = false;
+                    addElement("פורמט תאריך משלוח שגוי " + (i + 1));
+                }
+
+
+                if (dataTime2.trim().length != 8 || String(dataTime2.substring(2, 3)) != "/" || String(dataTime2.substring(5, 6)) != "/") {
+                    pormatTime2Boolean = false;
+                    addElement("פורמט תאריך תוקף שגוי " + (i + 1));
+                }
+
+
+                if (dayDataTime < 0 || dayDataTime > 31) {
+                    dayDataTimeBoolean = false;
+                    addElement("פורמט תאריך משלוח שדה -יום, שגוי. שורה " + (i + 1));
+                }
+
+                if (monthDataTime < 1 || monthDataTime > 12) {
+                    monthDataTimeBoolean = false;
+                    addElement("פורמט תאריך משלוח שדה -חודש, שגוי. שורה " + (i + 1));
+                }
+                if (yearDataTime < 23) {
+                    yearDataTimeBoolean = false;
+                    addElement("פורמט תאריך משלוח שדה -שנה, שגוי. שורה " + (i + 1));
+                }
+
+
+                if (dayDataTime2 < 0 || dayDataTime2 > 31) {
+                    dayDataTime2Boolean = false;
+                    addElement("פורמט תאריך תוקף שדה -יום, שגוי. שורה " + (i + 1));
+                }
+
+                if (monthDataTime2 < 1 || monthDataTime2 > 12) {
+                    monthDataTime2Boolean = false;
+                    addElement("פורמט תאריך תוקף שדה -חודש, שגוי. שורה " + (i + 1));
+                }
+                if (yearDataTime2 < 23) {
+                    yearDataTime2Boolean = false;
+                    addElement("פורמט תאריך תוקף שדה -שנה, שגוי. שורה " + (i + 1));
+                }
+
+
+                // if (!compareStringsIgnoreCaseAndSpace(isValidnumMessage, numMessage)) {
+                //     numMessageBoolean = false;
+                //     addElement("מספר תעודה שגוי שורה "+ (i + 1));
+                //
+                // }
+
+                if (numMessage.trim() != "") {
+                    if (!compareStringsIgnoreCaseAndSpace(isValidnumMessage, numMessage)) {
+                        numMessageBoolean = false;
+                        addElement("מספר תעודה שגוי שורה " + (i + 1));
+                        const messageIconX = document.getElementById('messageIconX');
+                        messageIconX.style.display = 'block';
+                    }
+                }
+                // if (isValidNumMessage.trim() === "" || numMessage.trim() != "" &&
+                //     !isValidNumMessage.trim().includes(numMessage.trim())){
+                //     numMessageBoolean = false;
+                //     addElement("מספר תעודה שגוי שורה " + (i + 1));
+                // }
+
+
+            }
+
+ if (isValidNumRetailerBoolean){
+     const retailerIconV = document.getElementById('retailerIconV');
+     retailerIconV.style.display = 'block';
+ }
+
+        if (numSupplierBoolean){
+             const supplierIconV = document.getElementById('supplierIconV');
+             supplierIconV.style.display = 'block';
+        }
+
+if (numMessageBoolean) {
+        const messageIconV = document.getElementById('messageIconV');
+        messageIconV.style.display = 'block';
+    }
+
+    if (numMessage.trim() === "") {
+        const messageIconX = document.getElementById('messageIconX');
+        messageIconX.style.display = 'none';
+        const messageIconV = document.getElementById('messageIconV');
+        messageIconV.style.display = 'none';
+    }
+
+
+
+if (numSupplierSubnetNumberBoolean) {
+        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+        supplierSubnetNumberIconV.style.display = 'block';
+    }
+
+    if (numSupplierSubnetNumber.trim() === "") {
+        const supplierSubnetNumberIconX = document.getElementById('supplierSubnetNumberIconX');
+        supplierSubnetNumberIconX.style.display = 'none';
+        const supplierSubnetNumberIconV = document.getElementById('supplierSubnetNumberIconV');
+        supplierSubnetNumberIconV.style.display = 'none';
+    }
+
+
 
 
 // Check the flag to determine if all elements were equal
-        if (numSupplierBoolean && isValidNumRetailerBoolean && isValidNumSupplierSubnetNumberBoolean
-            && numSupplierSubnetNumberBoolean
-            && numpPackagingBoolean
-            && barcodeBoolean
-            && matchNumBranchBoolean
-            && numBranch2Boolean
-            && numBranch1Boolean
-            && pormatTime1Boolean
-            && pormatTime2Boolean
-            && dayDataTimeBoolean
-            && monthDataTimeBoolean
-            && yearDataTimeBoolean
-            && dayDataTime2Boolean
-            && monthDataTime2Boolean
-            && yearDataTime2Boolean
-            && numMessageBoolean
+            if (numSupplierBoolean && isValidNumRetailerBoolean && isValidNumSupplierSubnetNumberBoolean
+                && numSupplierSubnetNumberBoolean
+                && numpPackagingBoolean
+                && barcodeBoolean
+                && matchNumBranchBoolean
+                && numBranch2Boolean
+                && numBranch1Boolean
+                && pormatTime1Boolean
+                && pormatTime2Boolean
+                && dayDataTimeBoolean
+                && monthDataTimeBoolean
+                && yearDataTimeBoolean
+                && dayDataTime2Boolean
+                && monthDataTime2Boolean
+                && yearDataTime2Boolean
+                && numMessageBoolean
 
 
-        ) {
-            addElement("תעודה תקינה");
-        }
+            ) {
+                addElement("תעודה תקינה");
+            }
 
 
-    } catch (e) {
-    }
 
+    }catch (e){}
 
 }
 
