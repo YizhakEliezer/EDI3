@@ -1,8 +1,7 @@
 .body {
     font-family: Arial;
     background-color: #f0f0f3;
-    /*//#e2ddff*/
-    background-image: url("https://yizhakeliezer.github.io/EDI3/storenext.png");
+    background-image: url("https://yizhakeliezer.github.io/EDI7/storenext.png");
     background-size: 200px;
     background-repeat: no-repeat;
     background-position: revert;
@@ -90,21 +89,6 @@
 }
 
 
-/*#Search{*/
-
-/*    border-color: #bdb8b8;*/
-/*    border: 2px solid #011926;*/
-/*    color: #011926;*/
-/*    background-color: #79acf1;*/
-/*    font-size: 15px;*/
-/*    width: 60%;*/
-/*    height: 10%;*/
-/*    position: absolute;*/
-/*    top: 185%;*/
-/*    left:20%;*/
-/*    display: none;*/
-
-/*}*/
 
 
 #messageRuslt1 {
@@ -186,21 +170,13 @@
     padding: 3px;
     text-align: center;
     cursor: pointer;
-    /*width: 20%;*/
-    /*height: 33%;*/
     background-color: white;
     color: #4d4a4a;
     position: absolute;
-    /*top: 47%;*/
     left: 50%;
-    /*top: 340px;*/
     top:60%;
     width: 370px;
     height: 280px;
-
-
-    /*width: 50%;*/
-    /*height:  50%;*/
     transform: translate(-50%, -50%);
     padding: 20px;
 
@@ -226,16 +202,32 @@
 
 #upload-icon {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:100%;
+    height: 100%;
+    background-color: white;
+    color: white;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+}
+
+
+
+#upload-iconDiv {
+    position: absolute;
     top: 64%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80px;
-    height: 40px;
+    height: 35px;
     background-color: #3f4fd3;
     color: white;
     border: 2px solid #ffffff;
     border-radius: 15px;
 }
+
 
 
 .iconAndhandleDrop {
