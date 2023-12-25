@@ -459,7 +459,9 @@ function chekFileFletSupdes() {
             //barcode
             constantValuesBarcodeBoolean === true && valuesBarcodeBoolean === true && ItemDataBoolean === true &&
             compareStringsIgnoreCaseAndSpace(lestline, HEAD9901) &&
-            compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)
+            compareStringsIgnoreCaseAndSpace(lestline1, ENV00201) &&
+
+             isValidNumBranchRetailer.trim()!=""
 
 
         ) {
@@ -595,6 +597,10 @@ function chekFileFletSupdes() {
 
         if (!compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)) {
             addElement('ENV00201-ערך חסר');
+        }
+
+          if (isValidNumBranchRetailer.trim()==="") {
+            addElement('מספר סניף חסר');
         }
 
     }catch (v){}
