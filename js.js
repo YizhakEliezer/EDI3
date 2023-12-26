@@ -306,7 +306,7 @@ function chekFileFletSupdes() {
                         }
                     } else {
                         constantValuesBarcodeBoolean = false;
-                        addElement("תחילית מקט חסר  שורה " + (i + 1))
+                        addElement("תחילית מקט חסר או שגוי שורה " + (i + 1))
                     }
                 }
             }
@@ -316,100 +316,59 @@ function chekFileFletSupdes() {
         // function for checking the c Values of  barcodes is not empty or with spaces
         let valuesBarcodeBoolean = true;
 
-        function valuesBarcode() {
-            for (let r = 3; r < lines.length - 3; r++) {
-                const BarcodeArryStartOfLine = lines[r].substring(0, 8);
-                if (compareStringsIgnoreCaseAndSpace(BarcodeArryStartOfLine, LINE0101)) {
-                    r++
-                }
-                const barcodeEmpty = lines[r].substring(8, 9);
-                // const barcodeEmpty = splitSupdes[numsplitSupdes].split('\n')[r].substring(8, 22);
-                const barcodeWithspaces = lines[r].substring(8, 23);
-                const mbarcodeWithspacesValue = barcodeWithspaces;
-                if (barcodeEmpty.trim() === "") {
-                    valuesBarcodeBoolean = false;
-                    addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-
-                } else {
-
-                    for (let i = 0; i < mbarcodeWithspacesValue.length; i++) {
-
-                        if (mbarcodeWithspacesValue[i].trim() === "") {
-
-                            for (let j = i + 1; j < mbarcodeWithspacesValue.length; j++) {
-                                if (mbarcodeWithspacesValue[j].trim() === "") {
-
-                                } else {
-                                    valuesBarcodeBoolean = false;
-                                    addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-                                    break;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-
         // function valuesBarcode() {
         //     for (let r = 3; r < lines.length - 3; r++) {
-        //         const BarcodeArryStartOfLine = splitSupdes[numsplitSupdes].split('\n')[r].substring(0, 8);
+        //         const BarcodeArryStartOfLine = lines[r].substring(0, 8);
         //         if (compareStringsIgnoreCaseAndSpace(BarcodeArryStartOfLine, LINE0101)) {
         //             r++
         //         }
-        //
-        //
-        //         let stat;
-        //         let end;
-        //         let b=true;
-        //         const barcodeWithspaces = splitSupdes[numsplitSupdes].split('\n')[r].substring(8, 23);
+        //         const barcodeEmpty = lines[r].substring(8, 9);
+        //         // const barcodeEmpty = splitSupdes[numsplitSupdes].split('\n')[r].substring(8, 22);
+        //         const barcodeWithspaces = lines[r].substring(8, 23);
         //         const mbarcodeWithspacesValue = barcodeWithspaces;
-        //         if (barcodeWithspaces.trim() === "") {
+        //         if (barcodeEmpty.trim() === "") {
         //             valuesBarcodeBoolean = false;
         //             addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-        //
+
         //         } else {
-        //             let t =true;
+
         //             for (let i = 0; i < mbarcodeWithspacesValue.length; i++) {
-        //                 if (mbarcodeWithspacesValue[i].trim()!="") {
-        //                    stat=mbarcodeWithspacesValue[i];
-        //                     mbarcodeWithspacesValue.length=mbarcodeWithspacesValue.length-i;
-        //                     for (let k =i ; k <mbarcodeWithspacesValue.length ; k++) {
-        //                         if (mbarcodeWithspacesValue[k].trim()===""){
-        //                             // valuesBarcodeBoolean = false;
-        //                             // addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-        //                             t=false;
+
+        //                 if (mbarcodeWithspacesValue[i].trim() === "") {
+
+        //                     for (let j = i + 1; j < mbarcodeWithspacesValue.length; j++) {
+        //                         if (mbarcodeWithspacesValue[j].trim() === "") {
+
+        //                         } else {
+        //                             valuesBarcodeBoolean = false;
+        //                             addElement("ברקוד חסר או שגוי שורה " + (r + 1));
+        //                             break;
         //                         }
-        //                         if (t===true){
-        //                             alert(mbarcodeWithspacesValue)
-        //                         }
-        //
-        //
+        //                         break;
         //                     }
-        //                     // if (mbarcodeWithspacesValue.includes("")){
-        //                     //      valuesBarcodeBoolean = false;
-        //                     //      addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-        //                     // }
-        //
-        //                     // alert(stat+barcodeWithspaces-end)
-        //
-        //
-        //                     if (mbarcodeWithspacesValue.includes("")){
-        //                         alert(mbarcodeWithspacesValue)
-        //                     }
-        //                     break;
         //                 }
-        //
-        //
-        //
         //             }
         //         }
         //     }
         // }
 
+        
+ function valuesBarcode() {
+            for (let r = 3; r < lines.length - 3; r++) {
+                const BarcodeArryStartOfLine = lines[r].substring(0, 8);
+                if (compareStringsIgnoreCaseAndSpace(BarcodeArryStartOfLine, LINE0101)) {
+                    r++
+                }
+                const barcodeWithspaces = lines[r].substring(8, 23);
+                if (barcodeWithspaces.trim() === "") {
+                    valuesBarcodeBoolean = false;
+                    addElement("ברקוד חסר " + (r + 1));
+                }
+            }
+        }
+
+
+      
 
         //chek barcode is validi
 
