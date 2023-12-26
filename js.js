@@ -180,6 +180,9 @@ function messageRusltFix() {
 function chekFileFletSupdes() {
 
     numsplitSupdes = 0;
+//Clear the result arrays before each test
+    myArray = [];
+    myArraymessageRusltFromFile = [];
 
     try {
         const messageIconX = document.getElementById('messageIconX');
@@ -227,6 +230,7 @@ function chekFileFletSupdes() {
         } catch (e) {
         }
 
+
         //Split the file into lines
         const lines = splitSupdes[numsplitSupdes].split('\n');
         // const secondToLastLine = lines[lines.length - 2];
@@ -244,9 +248,7 @@ function chekFileFletSupdes() {
             lines.length = lines.length - (cuont );
         }
 
-        //Clear the result arrays before each test
-        myArray = [];
-        myArraymessageRusltFromFile = [];
+
 
 
         //A function to check whether the values are equal without empty or undefined values
@@ -442,6 +444,8 @@ function chekFileFletSupdes() {
         const minute = Number(timeDocument.substring(10, 12));
 
 
+
+
         //NumSupplierSubnetNumber+NumBranchRetailer
         const isValidNumSupplierSubnetNumber = lines[1].substring(104, 119);
         const isValidNumBranchRetailer = lines[1].substring(154, 169);
@@ -473,10 +477,15 @@ function chekFileFletSupdes() {
 
             (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) &&
 
-            booleneLength === true &&
-            year >= 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
+             booleneLength === true &&
+            
+
+            (  year => 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
             minute > 0 && minute <= 59
+            )
             &&
+
+
 
             (numSupplierSubnetNumber.trim() === "" &&
                 compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier) ||
