@@ -329,16 +329,16 @@ function chekFileFletSupdes() {
         //         if (barcodeEmpty.trim() === "") {
         //             valuesBarcodeBoolean = false;
         //             addElement("ברקוד חסר או שגוי שורה " + (r + 1));
-
+        //
         //         } else {
-
+        //
         //             for (let i = 0; i < mbarcodeWithspacesValue.length; i++) {
-
+        //
         //                 if (mbarcodeWithspacesValue[i].trim() === "") {
-
+        //
         //                     for (let j = i + 1; j < mbarcodeWithspacesValue.length; j++) {
         //                         if (mbarcodeWithspacesValue[j].trim() === "") {
-
+        //
         //                         } else {
         //                             valuesBarcodeBoolean = false;
         //                             addElement("ברקוד חסר או שגוי שורה " + (r + 1));
@@ -352,8 +352,9 @@ function chekFileFletSupdes() {
         //     }
         // }
 
-        
- function valuesBarcode() {
+
+
+        function valuesBarcode() {
             for (let r = 3; r < lines.length - 3; r++) {
                 const BarcodeArryStartOfLine = lines[r].substring(0, 8);
                 if (compareStringsIgnoreCaseAndSpace(BarcodeArryStartOfLine, LINE0101)) {
@@ -367,8 +368,6 @@ function chekFileFletSupdes() {
             }
         }
 
-
-      
 
         //chek barcode is validi
 
@@ -437,7 +436,7 @@ function chekFileFletSupdes() {
             (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) &&
 
              booleneLength === true &&
-            
+
 
             (  year => 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
             minute > 0 && minute <= 59
