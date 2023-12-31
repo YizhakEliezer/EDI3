@@ -237,17 +237,18 @@ function chekFileFletSupdes() {
 
         let allLinesEmpty = true;
         let cuont = 0;
+
         for (let j = 0; j < lines.length; j++) {
             const currentLine = lines[j].trim();
-            if (currentLine === "" || currentLine === undefined) {
+            const currentLine1 = lines[j+1].trim();
+            if (currentLine === "" || currentLine === undefined ) {
                 allLinesEmpty = false;
                 cuont++;
             }
         }
         if (!allLinesEmpty) {
-            lines.length = lines.length - (cuont );
+            lines.length = lines.length - (cuont);
         }
-
 
 
 
@@ -353,7 +354,6 @@ function chekFileFletSupdes() {
         // }
 
 
-
         function valuesBarcode() {
             for (let r = 3; r < lines.length - 3; r++) {
                 const BarcodeArryStartOfLine = lines[r].substring(0, 8);
@@ -376,18 +376,17 @@ function chekFileFletSupdes() {
         valuesBarcode()
 
 
-
         //valueFromFile line 1
         const generalLineHeader = lines[0].substring(0, 8);
         const isValidNumRetailer = lines[0].substring(8, 23);
         const MMDE02L = lines[0].substring(23, 33);
         const MMDE02R = lines[0].substring(23, 33);
         const SUPDES = lines[0].substring(33, 47);
-        const isValidNumSupplier =lines[0].substring(49, 64);
+        const isValidNumSupplier = lines[0].substring(49, 64);
 
 
         //valueFromFile line 2
-        const firstLineDetailsFile =lines[1].substring(0, 8);
+        const firstLineDetailsFile = lines[1].substring(0, 8);
         const isValidNumMessage = lines[1].substring(8, 23);
 
 
@@ -402,24 +401,19 @@ function chekFileFletSupdes() {
         const minute = Number(timeDocument.substring(10, 12));
 
 
-
-
         //NumSupplierSubnetNumber+NumBranchRetailer
         const isValidNumSupplierSubnetNumber = lines[1].substring(104, 119);
         const isValidNumBranchRetailer = lines[1].substring(154, 169);
 
 
         //valueFromFile line 3
-        const firstLine3row =lines[2].substring(0, 8);
+        const firstLine3row = lines[2].substring(0, 8);
 
 
         //valueFromFile One line before last
         const lestline = lines[lines.length - 2].substring(0, 8);
         //valueFromFile last line
-        const lestline1 = lines[lines.length-1].substring(0, 8);
-
-
-
+        const lestline1 = lines[lines.length - 1].substring(0, 8);
 
 
         if (
@@ -435,14 +429,13 @@ function chekFileFletSupdes() {
 
             (isValidNumMessage.trim() != "" && numMessage.trim() === "" || isValidNumMessage.trim().includes(numMessage.trim())) &&
 
-             booleneLength === true &&
+            booleneLength === true &&
 
 
-            (  year => 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
-            minute > 0 && minute <= 59
+            (year => 2023 && month > 1 && month <= 12 && day > 1 && day <= 31 && hour > 0 && hour <= 24 &&
+                    minute > 0 && minute <= 59
             )
             &&
-
 
 
             (numSupplierSubnetNumber.trim() === "" &&
@@ -456,8 +449,7 @@ function chekFileFletSupdes() {
             (numBranchRetailer.trim() === "" ||
                 numBranchRetailer.trim() != "" &&
                 compareStringsIgnoreCaseAndSpace(isValidNumBranchRetailer, numBranchRetailer)
-            ) &&  isValidNumBranchRetailer.trim()!=""
-
+            ) && isValidNumBranchRetailer.trim() != ""
 
 
             &&
@@ -588,11 +580,9 @@ function chekFileFletSupdes() {
             branchRetailerIconV.style.display = 'none';
         }
 
-        if (isValidNumBranchRetailer.trim()==="") {
+        if (isValidNumBranchRetailer.trim() === "") {
             addElement('מספר סניף חסר');
         }
-
-
 
 
         //line 3
@@ -743,7 +733,7 @@ function chekFileHashavshevtSupdes() {
         if (currentVariable !== '') {
             variables.push(currentVariable);
         }
-
+        let test;
         if (variables.length > 1) {
             const numMessage = document.getElementById('message').value;
             const moreFile = document.querySelector('.moreFile');
@@ -759,6 +749,7 @@ function chekFileHashavshevtSupdes() {
             const moreFile = document.querySelector('.moreFile');
             moreFile.style.display = 'none';
         }
+
 
 
         // const lines =  splitSupdes[numsplitSupdes].split('\n');
@@ -785,7 +776,14 @@ function chekFileHashavshevtSupdes() {
         let yearDataTime2Boolean = true;
         let numMessageBoolean = true;
 
+        if (numMessage.trim()===""){
+            variables[numsplitSupdes]=fileContentSearch;
+
+        }
+
         const linesVariables = variables[numsplitSupdes].split('\n');
+
+
 
 
         for (let i = 0; i < linesVariables.length; i++) {
@@ -803,6 +801,9 @@ function chekFileHashavshevtSupdes() {
             }
 
             myArraymessageRusltFromFile = [];
+
+
+            console.log( variables[numsplitSupdes])
 
 
             const isValidNumSupplier = variables[numsplitSupdes].split('\n')[i].substring(10, 23);
@@ -827,7 +828,8 @@ function chekFileHashavshevtSupdes() {
             const isValidnumMessage = variables[numsplitSupdes].split('\n')[i].substring(151, 158);
 
 
-            if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier)) {
+
+            if (!compareStringsIgnoreCaseAndSpace(isValidNumSupplier, numSupplier) && numSupplier!="") {
                 numSupplierBoolean = false;
                 addElement("מספר ספק שגוי שורה " + (i + 1));
                 const supplierIconX = document.getElementById('supplierIconX');
@@ -835,7 +837,7 @@ function chekFileHashavshevtSupdes() {
             }
 
 
-            if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer)) {
+            if (!compareStringsIgnoreCaseAndSpace(isValidNumRetailer, numRetailer) && numRetailer!="") {
                 isValidNumRetailerBoolean = false;
                 addElement("מספר רשת שגוי שורה " + (i + 1));
                 const retailerIconX = document.getElementById('retailerIconX');
@@ -849,7 +851,7 @@ function chekFileHashavshevtSupdes() {
             //         addElement("מספר ספק משני שגוי שורה " + (i + 1));
             //     }
             // }
-            if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier)) {
+            if (numSupplierSubnetNumber.trim() === "" && !compareStringsIgnoreCaseAndSpace(isValidNumSupplierSubnetNumber, numSupplier) && numSupplier!="") {
                 isValidNumSupplierSubnetNumberBoolean = false;
                 addElement("מספר ספק משני שגוי שורה " + (i + 1));
             }
@@ -977,6 +979,7 @@ function chekFileHashavshevtSupdes() {
             messageIconV.style.display = 'block';
         }
 
+
         if (numMessage.trim() === "") {
             const messageIconX = document.getElementById('messageIconX');
             messageIconX.style.display = 'none';
@@ -997,6 +1000,18 @@ function chekFileHashavshevtSupdes() {
             supplierSubnetNumberIconV.style.display = 'none';
         }
 
+        if (numRetailer.trim() === "") {
+            const retailerIconX = document.getElementById('retailerIconX');
+            retailerIconX.style.display = 'none';
+            const retailerIconV = document.getElementById('retailerIconV');
+            retailerIconV.style.display = 'none';
+        }
+        if (numSupplier.trim() === "") {
+            const supplierIconX = document.getElementById('supplierIconX');
+            supplierIconX.style.display = 'none';
+            const supplierIconV = document.getElementById('supplierIconV');
+            supplierIconV.style.display = 'none';
+        }
 
 // Check the flag to determine if all elements were equal
         if (numSupplierBoolean && isValidNumRetailerBoolean && isValidNumSupplierSubnetNumberBoolean
