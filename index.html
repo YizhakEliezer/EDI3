@@ -5,13 +5,13 @@
     <title>edi</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="js.js"></script>
-    <script type="text/javascript" src="Search.js"></script>
+<!--    <script type="text/javascript" src="new.js" ></script>-->
+<!--    <script type="text/javascript" src="Search.js"></script>-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body class="body" onkeydown="checkEnter(event)">
-
 
 
 <div class="AllData">
@@ -38,27 +38,56 @@
 
     <div class="inputBox">
 
-        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 10px" id="retailerIconX"></i>
-        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 10px" id="retailerIconV"></i>
+        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 10px"
+           id="retailerIconX"></i>
+        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 10px"
+           id="retailerIconV"></i>
         <input type="text" id="retailer" list="optionsList" placeholder="(חובה) חפש\הזן מספר רשת"
-              ><br><br><br>
-        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 65px" id="supplierIconX"></i>
-        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 65px" id="supplierIconV"></i>
-        <input type="text" id="supplier" placeholder="(חובה) edi  הזן מספר ספק"
-               ><br><br><br>
-        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 120px" id="messageIconX"></i>
-        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 120px" id="messageIconV"></i>
+        ><br><br><br>
+        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 65px"
+           id="supplierIconX"></i>
+        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 65px"
+           id="supplierIconV"></i>
+        <label for="supplier"></label>
+        <input type="text" id="supplier" placeholder="(חובה) חפש\הזן מספר ספק" list="jsonValues"
+               oninput="updateInput()">
+        <br><br><br>
+
+
+        <datalist id="jsonValues"></datalist>
+
+
+        <label for="selectedValue" ></label>
+        <input type="text" id="selectedValue" readonly style="position: absolute; left: 20px;top: 90px;border: none;
+        outline: none;">
+
+
+
+
+
+
+
+
+
+        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 120px"
+           id="messageIconX"></i>
+        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 120px"
+           id="messageIconV"></i>
         <input type="text" id="message" placeholder="(אופציונלי) הזן מספר תעודה"
-             ><br><br><br>
-        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 175px" id="supplierSubnetNumberIconX"></i>
-        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 175px" id="supplierSubnetNumberIconV"></i>
+        ><br><br><br>
+        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 175px"
+           id="supplierSubnetNumberIconX"></i>
+        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 175px"
+           id="supplierSubnetNumberIconV"></i>
         <input type="text" id="supplierSubnetNumber" placeholder="הזן מספר תת ספק(אופציונלי)"
-             ><br><br><br>
-        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 230px" id="branchRetailerIconX"></i>
-        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 230px" id="branchRetailerIconV"></i>
+        ><br><br><br>
+        <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 230px"
+           id="branchRetailerIconX"></i>
+        <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 230px"
+           id="branchRetailerIconV"></i>
         <input type="text" id="branchRetailer" placeholder="(אופציונלי) edi הזן מספר סניף"
-             ><br><br><br>
-<!--        <p class="moreFile" style="position: center ;font-size:12px;color: red;left: 80px;bottom: 120px">הזן מספר תעודה מתוך תעודות מרובות</p>-->
+        ><br><br><br>
+        <!--        <p class="moreFile" style="position: center ;font-size:12px;color: red;left: 80px;bottom: 120px">הזן מספר תעודה מתוך תעודות מרובות</p>-->
     </div>
 
 
@@ -68,7 +97,8 @@
 </div>
 <br>
 
-<p class="moreFile" style="position: absolute ;font-size:12px;color: red;right: 235px;top: 170px">הזן מספר תעודה מתוך תעודות מרובות</p>
+<p class="moreFile" style="position: absolute ;font-size:12px;color: red;right: 235px;top: 170px">הזן מספר תעודה מתוך
+    תעודות מרובות</p>
 
 <div id="messageRuslt1">
     <h1 class="aa">תוצאות הבדיקה</h1>
@@ -86,32 +116,33 @@
 <!--        </p7>-->
 <!--    </div>-->
 
-    <div class="upFile">
+<div class="upFile">
 
-        <h1 id="titelFile">קבצים</h1>
-
-
-        <div class="files">
-            <div id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-
-                <div class="titelUpFile">
-                    <h1 style="font-size: 40px;color: #858a85;;position: relative;right: 6px"> ברוכים הבאים למסך EDI בדיקות מסרי</h1>
-                    <p7 style="font-size:23px;color: #858a85;position: relative;top:-20px;right: 9px">אנא בחרו או גררו קובץ
-                        שברצונכם לבדוק
-                    </p7>
-                </div>
-                <button id="upload-icon" onclick="triggerFileInput()"></button>
-                <div class="iconAndhandleDrop">
-                    <i class="material-icons upload-icon" id="icons"
-                       style="color: #4CAF50;font-size: 70px;position: relative;top:15px">cloud_upload</i>
-                    <p style="position: relative;top:-10px;font-size: 20px;" id="iconAndhandleDropP">גרור קובץ לכאן
-                        <br>או</p>
-                </div>
-
-                <button id="upload-iconDiv" onclick="triggerFileInput()">בחר קובץ</button>
+    <h1 id="titelFile">קבצים</h1>
 
 
-                <div id="file-name" style=" display: flex;
+    <div class="files">
+        <div id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+
+            <div class="titelUpFile">
+                <h1 style="font-size: 40px;color: #858a85;;position: relative;right: 6px"> ברוכים הבאים למסך EDI בדיקות
+                    מסרי</h1>
+                <p7 style="font-size:23px;color: #858a85;position: relative;top:-20px;right: 9px">אנא בחרו או גררו קובץ
+                    שברצונכם לבדוק
+                </p7>
+            </div>
+            <button id="upload-icon" onclick="triggerFileInput()"></button>
+            <div class="iconAndhandleDrop">
+                <i class="material-icons upload-icon" id="icons"
+                   style="color: #4CAF50;font-size: 70px;position: relative;top:15px">cloud_upload</i>
+                <p style="position: relative;top:-10px;font-size: 20px;" id="iconAndhandleDropP">גרור קובץ לכאן
+                    <br>או</p>
+            </div>
+
+            <button id="upload-iconDiv" onclick="triggerFileInput()">בחר קובץ</button>
+
+
+            <div id="file-name" style=" display: flex;
       align-items: center;
       justify-content: center;
       height: 0px;
@@ -123,22 +154,15 @@
     display: none;"></div>
 
 
-            </div>
-
-
-            <input type="file" id="file-input" onchange="handleFileInput(event)"/>
-
-
         </div>
+
+
+        <input type="file" id="file-input" onchange="handleFileInput(event)"/>
+
 
     </div>
 
-
-
-
-
-
-
+</div>
 
 
 <!--<input type="text" id="searchInput" list="optionsList" oninput="updateOptions()">-->
@@ -226,51 +250,96 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
-        function checkEnter(event) {
-            const AllData = document.querySelector('.AllData');
-            if (AllData.style.display==="block") {
-                if (event.key === 'Enter') {
-                    var selectedOption = document.getElementById("menuTypeStructure").value;
-                    if (selectedOption === "fileStructure") {
-                        alert("לא נבחר מבנה המסר לבדיקה");
-                    } else if (selectedOption === "fletFile") {
-                        chekFileFletSupdes();
-                    } else if (selectedOption === "hashavshevt") {
-                        chekFileHashavshevtSupdes();
-                    }
-
+    function checkEnter(event) {
+        const AllData = document.querySelector('.AllData');
+        if (AllData.style.display === "block") {
+            if (event.key === 'Enter') {
+                var selectedOption = document.getElementById("menuTypeStructure").value;
+                if (selectedOption === "fileStructure") {
+                    alert("לא נבחר מבנה המסר לבדיקה");
+                } else if (selectedOption === "fletFile") {
+                    chekFileFletSupdes();
+                } else if (selectedOption === "hashavshevt") {
+                    chekFileHashavshevtSupdes();
                 }
 
             }
+
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("supplier");
+        const selectedValueInput = document.getElementById("selectedValue");
+
+        // Fetch data from JSON file (replace 'data.json' with your file)
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate the datalist with values from the JSON file
+                populateDatalist(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        function populateDatalist(data) {
+            const datalist = document.getElementById("jsonValues");
+
+            // Clear previous options
+            datalist.innerHTML = '';
+
+            // Add options based on the data
+            data.forEach(item => {
+                const option = document.createElement("option");
+                option.value = item.key;
+                option.dataset.value = item.value; // Set the data-value attribute
+                datalist.appendChild(option);
+            });
+        }
+
+        searchInput.addEventListener("input", function () {
+            const inputValue = searchInput.value;
+            const datalist = document.getElementById("jsonValues");
+
+            // Find the selected value in the datalist
+            const selectedOption = Array.from(datalist.options).find(option => option.value === inputValue);
+
+            if (selectedOption) {
+                // If a matching value is found, update the selected value input with the key
+                selectedValueInput.value = selectedOption.value;
+            } else {
+                // Clear the selected value input if no match is found
+                selectedValueInput.value = '';
+            }
+        });
+
+        searchInput.addEventListener("change", function () {
+            const inputValue = searchInput.value;
+            const datalist = document.getElementById("jsonValues");
+
+            // Find the selected value in the datalist
+            const selectedOption = Array.from(datalist.options).find(option => option.value === inputValue);
+
+            if (selectedOption) {
+                // Update the search input with the selected key's value
+                searchInput.value = selectedOption.dataset.value;
+            }
+        });
+    });
+
+
+
+
 
 </script>
 
