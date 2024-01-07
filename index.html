@@ -5,8 +5,8 @@
     <title>edi</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="js.js"></script>
-<!--    <script type="text/javascript" src="new.js" ></script>-->
-<!--    <script type="text/javascript" src="Search.js"></script>-->
+    <!--    <script type="text/javascript" src="new.js" ></script>-->
+    <!--    <script type="text/javascript" src="Search.js"></script>-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -42,31 +42,19 @@
            id="retailerIconX"></i>
         <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 10px"
            id="retailerIconV"></i>
-        <input type="text" id="retailer" list="optionsList" placeholder="(חובה) חפש\הזן מספר רשת"
-        ><br><br><br>
+        <input type="text" id="retailer" list="jsonValuesRetailer" placeholder="(חובה) חפש\הזן מספר רשת">
+        <br><br><br>
         <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 65px"
            id="supplierIconX"></i>
         <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 65px"
            id="supplierIconV"></i>
         <label for="supplier"></label>
-        <input type="text" id="supplier" placeholder="(חובה) חפש\הזן מספר ספק" list="jsonValues"
-               oninput="updateInput()">
+        <input type="text" id="supplier" placeholder="(חובה) חפש\הזן מספר ספק" list="jsonValues">
         <br><br><br>
 
 
         <datalist id="jsonValues"></datalist>
-
-
-        <label for="selectedValue" ></label>
-        <input type="text" id="selectedValue" readonly style="position: absolute; left: 20px;top: 90px;border: none;
-        outline: none;">
-
-
-
-
-
-
-
+        <datalist id="jsonValuesRetailer"></datalist>
 
 
         <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 120px"
@@ -97,18 +85,29 @@
 </div>
 <br>
 
-<p class="moreFile" style="position: absolute ;font-size:12px;color: red;right: 235px;top: 170px">הזן מספר תעודה מתוך
-    תעודות מרובות</p>
+<div id="inputBoxData">
+<label for="selectedValue"></label>
+<input type="text" id="selectedValue" readonly style="position: absolute;top: 183px; right: 220px;
+        outline: none; text-align:right;padding: 0px;width: 190px;height: 13px; color: #2d3cc7;font-weight: bold;border: none;">
+
+<label for="selectedValueRetailer"></label>
+<input type="text" id="selectedValueRetailer" readonly style="position: absolute;top: 128px; right: 220px;
+        outline: none;padding: 0px;width: 190px; height: 13px;text-align:right; color: #2d3cc7;font-weight: bold;border: none;">
+</div>
+
+<!--<p class="moreFile" style="position: absolute ;font-size:12px;color: red;right: 235px;top: 170px">הזן מספר תעודה מתוך-->
+<!--    תעודות מרובות</p>-->
 
 <div id="messageRuslt1">
     <h1 class="aa">תוצאות הבדיקה</h1>
     <p id="messageRuslt"></p>
-
-
 </div>
 <br><br>
 <br>
 
+
+<p class="moreFile" style="position: absolute ;font-size:12px;color: red;;right: 235px;top:228px">הזן מספר תעודה מתוך
+    תעודות מרובות</p>
 <!--    <div class="titelUpFile">-->
 <!--        <h3 style="font-size: 35px;color: #858a85;"> edi ברוכים הבאים למסך בדיקות מסרי </h3>-->
 <!--        <p7 style="font-size: 25px;color: #858a85;position: absolute;right: 93px;top:102px">אנא בחרו או גררו קובץ-->
@@ -166,88 +165,85 @@
 
 
 <!--<input type="text" id="searchInput" list="optionsList" oninput="updateOptions()">-->
-<div class="divOptionsList">
-    <datalist id="optionsList">
-        <option value="7290027600007">-שופרסל</option>
-        <option value="7290058140886">-יינות ביתן</option>
-        <option value="7290058140886">-סמארט סרוייס</option>
-        <option value="7290058140886">-אל דוד קמעונאות</option>
-        <option value="7290058140886">-ליאור עדיקה</option>
-        <option value="7290058140886">-סופר טל</option>
-        <option value="7290058140886">-סופר לב</option>
-        <option value="7290058140886">-שמואל שפע ברכה</option>
-        <option value="7290058140886">-מעדני מניה</option>
-        <option value="7290058140886">-ד.נ קמעונאות</option>
-        <option value="7290058140886">-טסה שוקולד</option>
-        <option value="7290058140886">-מעדני גורמה</option>
-        <option value="7290058140886">-בול מרקט</option>
-        <option value="7290058140886">-סאלח דבאח</option>
-        <option value="7290058140886">-פוד מאסטר</option>
-        <option value="7290058140886">-קשת גיבורים</option>
-        <option value="7290058140886">-האחים יעקובי</option>
-        <option value="7290785400000">-קשת טעמים</option>
-        <option value="7290058206902">-קולינאריק</option>
-        <option value="7290393000005">-טיב טעם</option>
-        <option value="7290058186181">-עדן טבע</option>
-        <option value="7290058140886">-חצי חינם</option>
-        <option value="7290058140886">-יוחננוף</option>
-        <option value="7290058140886">-רמי לוי</option>
-        <option value="7290058140886">-ב.ה לוי</option>
-        <option value="7290737000005">-מנטה</option>
-        <option value="7290058160372">-יילו</option>
-        <option value="7290661400001">-מחסני השוק</option>
-        <option value="7290058140886">-המרכז הקמעונאי למזון</option>
-        <option value="7290058214044">-סיטונאות רחמים</option>
-        <option value="7290058140886">-פרש מרקט</option>
-        <option value="7290058140886">-מרקט בעיר</option>
-        <option value="7290058140886">-מחסני להב ספיר דן</option>
-        <option value="7290058140886">-מרכז המזון ירכא</option>
-        <option value="7290058140886">-סופר יודה</option>
-        <option value="7290058140886">-מיקה תפעול תחנות דלק</option>
-        <option value="7290058140886">-ספאר ישראל</option>
-        <option value="7290058140886">-מחסני מזון חינם פלוס</option>
-        <option value="7290492000005">-דור אלון/AM PM/אלונית</option>
-        <option value="7290058140886">-סופר ברקת</option>
-        <option value="7290058140886">-נתיב החסד</option>
-        <option value="7290058213818">-מלונות פתאל</option>
-        <option value="7290058140886">-טבע ספורט קסטל</option>
+<!--<div class="divOptionsList">-->
+<!--    <datalist id="optionsList">-->
+<!--        <option value="7290027600007">-שופרסל</option>-->
+<!--        <option value="7290058140886">-יינות ביתן</option>-->
+<!--        <option value="7290058140886">-סמארט סרוייס</option>-->
+<!--        <option value="7290058140886">-אל דוד קמעונאות</option>-->
+<!--        <option value="7290058140886">-ליאור עדיקה</option>-->
+<!--        <option value="7290058140886">-סופר טל</option>-->
+<!--        <option value="7290058140886">-סופר לב</option>-->
+<!--        <option value="7290058140886">-שמואל שפע ברכה</option>-->
+<!--        <option value="7290058140886">-מעדני מניה</option>-->
+<!--        <option value="7290058140886">-ד.נ קמעונאות</option>-->
+<!--        <option value="7290058140886">-טסה שוקולד</option>-->
+<!--        <option value="7290058140886">-מעדני גורמה</option>-->
+<!--        <option value="7290058140886">-בול מרקט</option>-->
+<!--        <option value="7290058140886">-סאלח דבאח</option>-->
+<!--        <option value="7290058140886">-פוד מאסטר</option>-->
+<!--        <option value="7290058140886">-קשת גיבורים</option>-->
+<!--        <option value="7290058140886">-האחים יעקובי</option>-->
+<!--        <option value="7290785400000">-קשת טעמים</option>-->
+<!--        <option value="7290058206902">-קולינאריק</option>-->
+<!--        <option value="7290393000005">-טיב טעם</option>-->
+<!--        <option value="7290058186181">-עדן טבע</option>-->
+<!--        <option value="7290058140886">-חצי חינם</option>-->
+<!--        <option value="7290058140886">-יוחננוף</option>-->
+<!--        <option value="7290058140886">-רמי לוי</option>-->
+<!--        <option value="7290058140886">-ב.ה לוי</option>-->
+<!--        <option value="7290737000005">-מנטה</option>-->
+<!--        <option value="7290058160372">-יילו</option>-->
+<!--        <option value="7290661400001">-מחסני השוק</option>-->
+<!--        <option value="7290058140886">-המרכז הקמעונאי למזון</option>-->
+<!--        <option value="7290058214044">-סיטונאות רחמים</option>-->
+<!--        <option value="7290058140886">-פרש מרקט</option>-->
+<!--        <option value="7290058140886">-מרקט בעיר</option>-->
+<!--        <option value="7290058140886">-מחסני להב ספיר דן</option>-->
+<!--        <option value="7290058140886">-מרכז המזון ירכא</option>-->
+<!--        <option value="7290058140886">-סופר יודה</option>-->
+<!--        <option value="7290058140886">-מיקה תפעול תחנות דלק</option>-->
+<!--        <option value="7290058140886">-ספאר ישראל</option>-->
+<!--        <option value="7290058140886">-מחסני מזון חינם פלוס</option>-->
+<!--        <option value="7290492000005">-דור אלון/AM PM/אלונית</option>-->
+<!--        <option value="7290058140886">-סופר ברקת</option>-->
+<!--        <option value="7290058140886">-נתיב החסד</option>-->
+<!--        <option value="7290058213818">-מלונות פתאל</option>-->
+<!--        <option value="7290058140886">-טבע ספורט קסטל</option>-->
 
 
-        <option value="7290058216161">-אר.טו.אמ. קורפוראשיין</option>
-        <option value="7290058140886">-אהבת חסד</option>
-        <option value="7290058140886">-מרב מזון כל אושר עד</option>
-        <option value="7290058237807">-משקאות חינאוי</option>
-        <option value="7290058140886">-סופר קופיקס</option>
-        <option value="7290639000004">-סטופ מרקט</option>
-        <option value="7290058140886">ח.נ.ח אקספרס בע"מ (הרמיטאז')</option>
-        <option value="7290058140886">-בנא משקאות</option>
-        <option value="7290058140886">-זול ובגדול</option>
-        <option value="7290058140886">-שיווק רוסמן</option>
-        <option value="7290058140886">-הסל שלי</option>
-        <option value="7290058140886">-מזוז אליהו ובניו</option>
-        <option value="7290058140886">-פוליצר</option>
-        <option value="7290058140886">-חסד לאלפים</option>
-        <option value="7290058140886">-אניס בשביל הטבע</option>
-        <option value="7290058140886">-דיוטי פארם</option>
-        <option value="7290058140886">-צ'וסחא מרקט</option>
-        <option value="7290058140886">-שאולי פמילי מרקט</option>
-        <option value="7290058234172">-מעיין נציגויות</option>
-        <option value="7290058140886">-אייזיקס מעדני גורמה</option>
-        <option value="7290058140886">-סופר רפאל</option>
-        <option value="7290455000004">-ח.כהן סוכנות מזון</option>
-        <option value="7290058253678">-ח.כהן יבוא שיווק</option>
-        <option value="7290058224357">-פודנט</option>
-        <option value="7290058140886">-סופר אשכול</option>
-        <option value="7290058213559">-היפר ליפסקר</option>
-        <option value="7290058140886">-ח.י מעדני גורמה</option>
-        <option value="7290058140886">-סופר בונוס</option>
+<!--        <option value="7290058216161">-אר.טו.אמ. קורפוראשיין</option>-->
+<!--        <option value="7290058140886">-אהבת חסד</option>-->
+<!--        <option value="7290058140886">-מרב מזון כל אושר עד</option>-->
+<!--        <option value="7290058237807">-משקאות חינאוי</option>-->
+<!--        <option value="7290058140886">-סופר קופיקס</option>-->
+<!--        <option value="7290639000004">-סטופ מרקט</option>-->
+<!--        <option value="7290058140886">ח.נ.ח אקספרס בע"מ (הרמיטאז')</option>-->
+<!--        <option value="7290058140886">-בנא משקאות</option>-->
+<!--        <option value="7290058140886">-זול ובגדול</option>-->
+<!--        <option value="7290058140886">-שיווק רוסמן</option>-->
+<!--        <option value="7290058140886">-הסל שלי</option>-->
+<!--        <option value="7290058140886">-מזוז אליהו ובניו</option>-->
+<!--        <option value="7290058140886">-פוליצר</option>-->
+<!--        <option value="7290058140886">-חסד לאלפים</option>-->
+<!--        <option value="7290058140886">-אניס בשביל הטבע</option>-->
+<!--        <option value="7290058140886">-דיוטי פארם</option>-->
+<!--        <option value="7290058140886">-צ'וסחא מרקט</option>-->
+<!--        <option value="7290058140886">-שאולי פמילי מרקט</option>-->
+<!--        <option value="7290058234172">-מעיין נציגויות</option>-->
+<!--        <option value="7290058140886">-אייזיקס מעדני גורמה</option>-->
+<!--        <option value="7290058140886">-סופר רפאל</option>-->
+<!--        <option value="7290455000004">-ח.כהן סוכנות מזון</option>-->
+<!--        <option value="7290058253678">-ח.כהן יבוא שיווק</option>-->
+<!--        <option value="7290058224357">-פודנט</option>-->
+<!--        <option value="7290058140886">-סופר אשכול</option>-->
+<!--        <option value="7290058213559">-היפר ליפסקר</option>-->
+<!--        <option value="7290058140886">-ח.י מעדני גורמה</option>-->
+<!--        <option value="7290058140886">-סופר בונוס</option>-->
 
 
-    </datalist>
-</div>
-
-
-
+<!--    </datalist>-->
+<!--</div>-->
 
 
 <script>
@@ -268,15 +264,6 @@
 
         }
     }
-
-
-
-
-
-
-
-
-
 
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -308,17 +295,19 @@
         }
 
         searchInput.addEventListener("input", function () {
-            const inputValue = searchInput.value;
+            const inputValue = searchInput.value.toLowerCase(); // Convert to lowercase for case-insensitive comparison
             const datalist = document.getElementById("jsonValues");
 
-            // Find the selected value in the datalist
-            const selectedOption = Array.from(datalist.options).find(option => option.value === inputValue);
+            // Find the selected value in the datalist based on key or value
+            const selectedOption = Array.from(datalist.options).find(option =>
+                option.value.toLowerCase() === inputValue || option.dataset.value.toLowerCase() === inputValue
+            );
 
             if (selectedOption) {
                 // If a matching value is found, update the selected value input with the key
                 selectedValueInput.value = selectedOption.value;
             } else {
-                // Clear the selected value input if no match is found
+                // Clear the selected input value if no match is found
                 selectedValueInput.value = '';
             }
         });
@@ -338,7 +327,65 @@
     });
 
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("retailer");
+        const selectedValueInput = document.getElementById("selectedValueRetailer");
 
+        // Fetch data from JSON file (replace 'data.json' with your file)
+        fetch('retailerData.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate the datalist with values from the JSON file
+                populateDatalist(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        function populateDatalist(data) {
+            const datalist = document.getElementById("jsonValuesRetailer");
+
+            // Clear previous options
+            datalist.innerHTML = '';
+
+            // Add options based on the data
+            data.forEach(item => {
+                const option = document.createElement("option");
+                option.value = item.key;
+                option.dataset.value = item.value; // Set the data-value attribute
+                datalist.appendChild(option);
+            });
+        }
+
+        searchInput.addEventListener("input", function () {
+            const inputValue = searchInput.value.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+            const datalist = document.getElementById("jsonValuesRetailer");
+
+            // Find the selected value in the datalist based on key or value
+            const selectedOption = Array.from(datalist.options).find(option =>
+                option.value.toLowerCase() === inputValue || option.dataset.value.toLowerCase() === inputValue
+            );
+
+            if (selectedOption) {
+                // If a matching value is found, update the selected value input with the key
+                selectedValueInput.value = selectedOption.value;
+            } else {
+                // Clear the selected input value if no match is found
+                selectedValueInput.value = '';
+            }
+        });
+
+        searchInput.addEventListener("change", function () {
+            const inputValue = searchInput.value;
+            const datalist = document.getElementById("jsonValuesRetailer");
+
+            // Find the selected value in the datalist
+            const selectedOption = Array.from(datalist.options).find(option => option.value === inputValue);
+
+            if (selectedOption) {
+                // Update the search input with the selected key's value
+                searchInput.value = selectedOption.dataset.value;
+            }
+        });
+    });
 
 
 </script>
