@@ -66,7 +66,7 @@ function checkForValue(file) {
         const icons = document.getElementById('icons');
         const iconAndhandleDropP = document.getElementById('iconAndhandleDropP');
         const uploadiconDiv = document.getElementById('upload-iconDiv');
-
+        const inputBoxData = document.getElementById('inputBoxData');
         if (fileContent != undefined) {
             AllData.style.display = 'block';
             messageRuslt1.style.display = 'block';
@@ -94,6 +94,7 @@ function checkForValue(file) {
             uploadiconDiv.style.width = '17%';
             uploadiconDiv.style.height = '16%';
             uploadiconDiv.style.top = '70%';
+            inputBoxData.style.display = 'block';
         }
 
 
@@ -231,23 +232,22 @@ function chekFileFletSupdes() {
         }
 
 
+            //Split the file into lines
         //Split the file into lines
         const lines = splitSupdes[numsplitSupdes].split('\n');
         // const secondToLastLine = lines[lines.length - 2];
 
         let allLinesEmpty = true;
         let cuont = 0;
-
         for (let j = 0; j < lines.length; j++) {
             const currentLine = lines[j].trim();
-            const currentLine1 = lines[j+1].trim();
-            if (currentLine === "" || currentLine === undefined ) {
+            if (currentLine === "" || currentLine === undefined) {
                 allLinesEmpty = false;
                 cuont++;
             }
         }
         if (!allLinesEmpty) {
-            lines.length = lines.length - (cuont);
+            lines.length = lines.length - (cuont );
         }
 
 
@@ -597,6 +597,7 @@ function chekFileFletSupdes() {
         if (!compareStringsIgnoreCaseAndSpace(lestline1, ENV00201)) {
             addElement('ENV00201-ערך חסר');
         }
+
 
     } catch (v) {
     }
