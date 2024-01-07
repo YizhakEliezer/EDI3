@@ -1,7 +1,7 @@
 .body {
     font-family: Arial;
     background-color: #f0f0f3;
-    background-image: url("https://yizhakeliezer.github.io/EDI7/storenext.png");
+    background-image: url(https://yizhakeliezer.github.io/EDI7/storenext.png");
     background-size: 200px;
     background-repeat: no-repeat;
     background-position: revert;
@@ -22,6 +22,9 @@
 
 }
 
+#inputBoxData{
+    display: none;
+}
 
 .inputBox input {
     color: #2d3cc7;
@@ -37,6 +40,8 @@
 
 
 }
+
+
 
 
 .inputBox {
