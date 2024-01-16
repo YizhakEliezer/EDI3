@@ -1,13 +1,17 @@
-//myArray result
+//myArray test results
 let myArray = [];
-//myArray for data file
+//myArray for data file(do not have to)
 let fileContentSearch;
-//For multiple certificates
+//In the case of multiple certificates,
+// check where the certificate number is located that the user entered and accordingly search the certificate
+// In case it is a single certificate then we defined that numsplitSupdes is equal to 0
 let numsplitSupdes = 0;
 //array For multiple certificates
 let splitSupdes;
 
 myArraymessageRusltFromFile = [];
+
+
 
 
 //ondrop file
@@ -19,19 +23,26 @@ function handleDrop(event) {
     event.preventDefault();
     const files = event.dataTransfer.files;
     handleFiles(files);
-
 }
 
 function handleFileInput(event) {
     const files = event.target.files;
     handleFiles(files);
 
-
 }
 
 
 //name file
 function handleFiles(files) {
+    const allowedTypes = ['text/plain','','application/msword'];
+    console.log(files[0].type)
+    if (allowedTypes.includes(files[0].type)) {
+    } else {
+        alert(' פורמט ('+files[0].type+") אינו מתאים ,אנא בחרו קובץ בפורמט תקין. ");
+        // Clear the file input to prevent submitting an invalid file
+        fileInput.value = '';
+    }
+
     myArraymessageRusltFromFile = [];
     myArray = []; // Clear myArray before processing each file
     const fileName = files[0].name;
@@ -67,7 +78,9 @@ function checkForValue(file) {
         const iconAndhandleDropP = document.getElementById('iconAndhandleDropP');
         const uploadiconDiv = document.getElementById('upload-iconDiv');
         const inputBoxData = document.getElementById('inputBoxData');
+        const resultsFile = document.getElementById('resultsFile');
         if (fileContent != undefined) {
+            resultsFile.style.display = 'block';
             AllData.style.display = 'block';
             messageRuslt1.style.display = 'block';
             upFile.style.position = 'absolute';
@@ -95,6 +108,7 @@ function checkForValue(file) {
             uploadiconDiv.style.height = '16%';
             uploadiconDiv.style.top = '70%';
             inputBoxData.style.display = 'block';
+
         }
 
 
@@ -414,6 +428,68 @@ function chekFileFletSupdes() {
         const lestline = lines[lines.length - 2].substring(0, 8);
         //valueFromFile last line
         const lestline1 = lines[lines.length - 1].substring(0, 8);
+
+        const  resultsFileRetailer =document.getElementById("resultsFileRetailer");
+        const  resultsFileSupllier =document.getElementById("resultsFileSupllier");
+        const  resultsFileNumMessage =document.getElementById("resultsFileNumMessage");
+        const  resultsFileNumSupplierSubnetNumber =document.getElementById("resultsFileNumSupplierSubnetNumber");
+        const  resultsFileNumBranchRetailer =document.getElementById("resultsFileNumBranchRetailer");
+        resultsFileNumMessage.innerHTML ="";
+        resultsFileSupllier.innerHTML ="";
+        resultsFileRetailer.innerHTML ="";
+        resultsFileNumSupplierSubnetNumber.innerHTML ="";
+        resultsFileNumBranchRetailer.innerHTML ="";
+        resultsFileSupllier.innerHTML += ` (לא נמצא ספק המשוייך למספר הזה) <p1>ספק: ${isValidNumSupplier} </p1>`;
+        resultsFileRetailer.innerHTML += ` (לא נמצא רשת המשוייכת למספר הזה) <p1>רשת: ${isValidNumRetailer} </p1>`;
+        resultsFileNumMessage.innerHTML += `<p1>מספר תעודה: ${isValidNumMessage}</p1>`;
+        resultsFileNumSupplierSubnetNumber.innerHTML += `<p1>מספר תת ספק: ${isValidNumSupplierSubnetNumber}</p1>`;
+        resultsFileNumBranchRetailer.innerHTML += `<p1>מספר סניף: ${isValidNumBranchRetailer}</p1>`;
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Iterate through each object in the array
+                data.forEach(obj => {
+                    // Check if the value pro
+                    if (obj.value.trim() === isValidNumSupplier.trim()) {
+                        // If a match is found, print the corresponding key
+                        resultsFileSupllier.innerHTML ="";
+                        resultsFileSupllier.innerHTML += `<p>ספק: ${isValidNumSupplier},${obj.key}</p>`;
+                        // If you only want to find the first match, you can break out of the loop here
+                        // break;
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+
+        fetch('retailerData.json')
+            .then(response => response.json())
+            .then(data => {
+                // Iterate through each object in the array
+                data.forEach(obj => {
+                    // Check if the value pro
+                    if (isValidNumRetailer.trim()==="7290058140886") {
+                        // If a match is found, print the corresponding key
+                        resultsFileRetailer.innerHTML ="";
+                        resultsFileRetailer.innerHTML += `<p>comax,רשת: ${isValidNumRetailer}</p>`;
+                        // If you only want to find the first match, you can break out of the loop here
+                        // break;
+                    }
+
+                    else if  (obj.value.trim() === isValidNumRetailer.trim()) {
+                        // If a match is found, print the corresponding key
+                        resultsFileRetailer.innerHTML ="";
+                        resultsFileRetailer.innerHTML += `<p>רשת: ${isValidNumRetailer},${obj.key}</p>`;
+                        // If you only want to find the first match, you can break out of the loop here
+                        // break;
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+
+
 
 
         if (
