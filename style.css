@@ -1,7 +1,7 @@
 .body {
     font-family: Arial;
     background-color: #f0f0f3;
-    background-image: url(https://yizhakeliezer.github.io/EDI7/storenext.png");
+    background-image: url("https://yizhakeliezer.github.io/EDI7/storenext.png");
     background-size: 200px;
     background-repeat: no-repeat;
     background-position: revert;
@@ -21,6 +21,44 @@
     display: none;
 
 }
+
+
+#resultsFile {
+    background-color: #ffffff;
+    position: absolute;
+    right:990px;
+    top: 20px;
+    width:600px;
+    height:800px;
+    border: 20px solid #c6c6c6;
+    border-radius: 4px;
+    display: none;
+    text-align: right;
+}
+
+#resultsFile li{
+    color: #413939;
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    top: 80px;
+    right: 30px;
+    margin-bottom: 20px;
+}
+
+
+#resultsFile h1{
+    position: absolute;
+    left: 36%;
+    top: 2%;
+    font-size: 30px;
+    color: #4a4a4d;
+    /*border-bottom: 2px solid #4CAF50;*/
+    display: inline;
+    padding-bottom: 3px;
+}
+
 
 #inputBoxData{
     display: none;
@@ -141,11 +179,6 @@
 .titelUpFile {
     position: absolute;
     bottom:320px;
-    /*left: 190px;*/
-    /*transform: translate(-50%, -50%);*/
-    /*padding: 20px;*/
-
-
 }
 
 
@@ -180,7 +213,7 @@
     position: absolute;
     left: 50%;
     top:60%;
-    width: 370px;
+    width: 385px;
     height: 280px;
     transform: translate(-50%, -50%);
     padding: 20px;
