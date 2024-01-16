@@ -5,19 +5,18 @@
     <title>edi</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="js.js"></script>
-    <!--    <script type="text/javascript" src="new.js" ></script>-->
-    <!--    <script type="text/javascript" src="Search.js"></script>-->
+    <!--    Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
+
+<!--Activation of the test by an event when the user presses enter-->
 <body class="body" onkeydown="checkEnter(event)">
-
-
+<!--select of message types-->
 <div class="AllData">
     <h1>פרטי התעודה</h1>
-
     <div class="selectType">
+        <!--pormat file-->
         <label for="fileStructure">מבנה המסר</label>
         <select name="menuTypeStructure" id="menuTypeStructure">
             <option value="fileStructure">מבנה המסר</option>
@@ -25,7 +24,7 @@
             <option value="fletFile">flet file</option>
 
         </select>
-
+        <!--        type file-->
         <label for="fileType">סוג המסר</label>
         <select name="menuTypefile" id="menuTypefile">
             <option value="fileType">סוג המסר</option>
@@ -35,28 +34,21 @@
             <option value="return">החזרה</option>
         </select>
     </div>
-
+    <!--input from user and icons-->
     <div class="inputBox">
-
         <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 10px"
            id="retailerIconX"></i>
         <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 10px"
            id="retailerIconV"></i>
-        <input type="text" id="retailer" list="jsonValuesRetailer" placeholder="(חובה) חפש\הזן מספר רשת">
+        <input type="text" id="retailer" list="jsonValuesRetailer" placeholder="(חובה) בחר את רשת התעודה">
         <br><br><br>
         <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 65px"
            id="supplierIconX"></i>
         <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 65px"
            id="supplierIconV"></i>
         <label for="supplier"></label>
-        <input type="text" id="supplier" placeholder="(חובה) חפש\הזן מספר ספק" list="jsonValues">
+        <input type="text" id="supplier" placeholder="(חובה) בחר את ספק התעודה" list="jsonValues">
         <br><br><br>
-
-
-        <datalist id="jsonValues"></datalist>
-        <datalist id="jsonValuesRetailer"></datalist>
-
-
         <i class="fa-solid fa-x" style="color: #fa0000;font-size: 15px;position:absolute; left: 20px;top: 120px"
            id="messageIconX"></i>
         <i class="fa-solid fa-check" style="color: #54f000;font-size: 15px;position:absolute; left: 20px;top: 120px"
@@ -75,72 +67,58 @@
            id="branchRetailerIconV"></i>
         <input type="text" id="branchRetailer" placeholder="(אופציונלי) edi הזן מספר סניף"
         ><br><br><br>
-        <!--        <p class="moreFile" style="position: center ;font-size:12px;color: red;left: 80px;bottom: 120px">הזן מספר תעודה מתוך תעודות מרובות</p>-->
     </div>
-
-
-    <!--    <button onclick="Search()" id="Search">בדוק</button>-->
-
     <br><br>
 </div>
 <br>
-
+<!--Show the user the choice of Retailer and supplier selected from a json file-->
 <div id="inputBoxData">
-<label for="selectedValue"></label>
-<input type="text" id="selectedValue" readonly style="position: absolute;top: 183px; right: 220px;
-        outline: none; text-align:right;padding: 0px;width: 190px;height: 13px; color: #2d3cc7;font-weight: bold;border: none;">
-
-<label for="selectedValueRetailer"></label>
-<input type="text" id="selectedValueRetailer" readonly style="position: absolute;top: 128px; right: 220px;
+    <label for="selectedValue"></label>
+    <input type="text" id="selectedValue" readonly style="position: absolute;top: 183px; right: 220px;
+        outline: none; text-align:right;padding: 0px;width: 190px;height: 13px; color: #2d3cc7;font-weight: bold;border:none;">
+    <label for="selectedValueRetailer"></label>
+    <input type="text" id="selectedValueRetailer" readonly style="position: absolute;top: 128px; right: 220px;
         outline: none;padding: 0px;width: 190px; height: 13px;text-align:right; color: #2d3cc7;font-weight: bold;border: none;">
+
+    <datalist id="jsonValues"></datalist>
+    <datalist id="jsonValuesRetailer"></datalist>
 </div>
-
-<!--<p class="moreFile" style="position: absolute ;font-size:12px;color: red;right: 235px;top: 170px">הזן מספר תעודה מתוך-->
-<!--    תעודות מרובות</p>-->
-
+<!--message Ruslt-->
 <div id="messageRuslt1">
     <h1 class="aa">תוצאות הבדיקה</h1>
     <p id="messageRuslt"></p>
 </div>
-<br><br>
-<br>
-
-
-<p class="moreFile" style="position: absolute ;font-size:12px;color: red;;right: 235px;top:226px">הזן מספר תעודה מתוך
-    תעודות מרובות</p>
-<!--    <div class="titelUpFile">-->
-<!--        <h3 style="font-size: 35px;color: #858a85;"> edi ברוכים הבאים למסך בדיקות מסרי </h3>-->
-<!--        <p7 style="font-size: 25px;color: #858a85;position: absolute;right: 93px;top:102px">אנא בחרו או גררו קובץ-->
-<!--            שברצוניכם לבדוק-->
-<!--        </p7>-->
-<!--    </div>-->
-
+<br><br><br>
+<!--multiple certificates-->
+<h4 class="moreFile" style="position: absolute ;font-size:12px;color: red;;right: 230px;top:223px">הזן מספר תעודה מתוך
+    תעודות מרובות</h4>
+<!--up file input+drop-->
 <div class="upFile">
-
     <h1 id="titelFile">קבצים</h1>
-
-
     <div class="files">
+        <!--drop file+up file-->
         <div id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-
-            <div class="titelUpFile">
+            <!--Paragraph of the initial screen-->
+            <div class="titelUpFile" style="display: block">
                 <h1 style="font-size: 40px;color: #858a85;;position: relative;right: 6px"> ברוכים הבאים למסך EDI בדיקות
                     מסרי</h1>
                 <p7 style="font-size:23px;color: #858a85;position: relative;top:-20px;right: 9px">אנא בחרו או גררו קובץ
                     שברצונכם לבדוק
                 </p7>
             </div>
+            <!--Upload button-->
             <button id="upload-icon" onclick="triggerFileInput()"></button>
+            <!--File upload icon+css-->
             <div class="iconAndhandleDrop">
-                <i class="material-icons upload-icon" id="icons"
+                <i class="material-icons upload-icon" id="icons" onclick="triggerFileInput()"
                    style="color: #4CAF50;font-size: 70px;position: relative;top:15px">cloud_upload</i>
-                <p style="position: relative;top:-10px;font-size: 20px;" id="iconAndhandleDropP">גרור קובץ לכאן
+                <p style="position: relative;top:-10px;font-size: 20px;" id="iconAndhandleDropP"
+                   onclick="triggerFileInput()">גרור קובץ לכאן
                     <br>או</p>
             </div>
-
+            <!--     Just the button's div-->
             <button id="upload-iconDiv" onclick="triggerFileInput()">בחר קובץ</button>
-
-
+            <!--The name of the uploaded file+css-->
             <div id="file-name" style=" display: flex;
       align-items: center;
       justify-content: center;
@@ -151,14 +129,9 @@
       font-size: 15px;
       color: #ff0000;
     display: none;"></div>
-
-
         </div>
-
-
+        <!--input to select a file-->
         <input type="file" id="file-input" onchange="handleFileInput(event)"/>
-
-
     </div>
 
 </div>
@@ -245,8 +218,22 @@
 <!--    </datalist>-->
 <!--</div>-->
 
+<div id="resultsFile">
+    <h1>פרטי התעודה</h1>
+    <ul >
+        <li id="resultsFileSupllier"></li>
+        <li id="resultsFileRetailer"></li>
+        <li id="resultsFileNumMessage"></li>
+        <li id="resultsFileNumSupplierSubnetNumber"></li>
+        <li id="resultsFileNumBranchRetailer"></li>
+    </ul>
+</div>
+
 
 <script>
+
+
+
     function checkEnter(event) {
         const AllData = document.querySelector('.AllData');
         if (AllData.style.display === "block") {
